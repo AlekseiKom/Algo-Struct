@@ -111,6 +111,29 @@ try {
   checks.push(['tablet: burger visible (display:flex)', t.burgerDisplay === 'flex']);
   await shot('header-tablet.png');
 
+  // ── Планшет в портрете 768×1024 ──
+  await cdp.send('Emulation.setDeviceMetricsOverride', { width: 768, height: 1024, deviceScaleFactor: 1, mobile: false });
+  await sleep(400);
+  const tp = await evalJs(cdp, MEASURE);
+  console.log('TABLET-PORTRAIT 768x1024:', JSON.stringify(tp));
+
+  // ── Мобильный 375×800 (смартфон) ──
+  await cdp.send('Emulation.setDeviceMetricsOverride', { width: 375, height: 800, deviceScaleFactor: 2, mobile: true });
+  await sleep(400);
+  const mb = await evalJs(cdp, MEASURE);
+  console.log('MOBILE 375x800:', JSON.stringify(mb));
+
+  // Выравнивание хедера по краям контентных блоков (не зависит от ширины: логотип = левый край, кнопки = правый край)
+  const edgeAlign = (m) => {
+    if (!m.units.length) return false;
+    const minL = Math.min(...m.units.map((u) => u.left));
+    const maxR = Math.max(...m.units.map((u) => u.right));
+    return Math.abs(m.logoLeft - minL) <= 1 && Math.abs(m.actionsRight - maxR) <= 1;
+  };
+  checks.push(['tablet-portrait: burger visible + edges aligned', tp.burgerDisplay === 'flex' && edgeAlign(tp)]);
+  checks.push(['mobile: burger visible + edges aligned', mb.burgerDisplay === 'flex' && edgeAlign(mb)]);
+  await shot('header-mobile.png');
+
   let ok = true;
   for (const [name, pass] of checks) { if (!pass) ok = false; console.log('CHECK ' + name + ' =', pass); }
   console.log(ok ? 'ALL PASS' : 'FAIL');

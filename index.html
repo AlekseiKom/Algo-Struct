@@ -1866,10 +1866,11 @@
         display: none !important;
       }
       /* Колонка контента — в той же ширине, что и строка шапки (.hdr-inner):
-         тот же боковой inset 20 px → все блоки ровно под логотипом и кнопками */
+         тот же боковой inset → все блоки ровно под логотипом и кнопками.
+         На узких экранах inset плавно сужается до 12 px (clamp), чтобы блоки были шире */
       .main-content {
         max-width: 100%;
-        padding: 16px 20px 60px;
+        padding: 16px clamp(12px, 2vw, 20px) 60px;
       }
       .app-layout {
         max-width: 100%;
@@ -1983,6 +1984,11 @@
         margin: 0 auto;
         padding: 0 clamp(16px, 3.5vw, 44px); /* идентично desktop-padding-inline .app-layout */
       }
+    }
+
+    /* ─── МОБИЛЬНЫЕ / ПЛАНШЕТЫ (≤1200px): боковой inset шапки = у .main-content, чтобы логотип и кнопки были ровно по краям блоков ─── */
+    @media (max-width: 1200px) {
+      .hdr-inner { padding: 0 clamp(12px, 2vw, 20px); } /* идентично mobile-padding-inline .main-content */
     }
 
     /* ══════ МОБИЛЬНАЯ ОПТИМИЗАЦИЯ И РАЗГРУЗКА ВЛОЖЕННОСТЕЙ ══════ */
