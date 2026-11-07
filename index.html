@@ -205,6 +205,13 @@
       background: linear-gradient(90deg, transparent, rgba(147, 197, 253, 0.14), transparent);
     }
 
+    /* Единая ширина и вертикальный ритм на ЛЮБОЙ ширине экрана (мобильный / планшет / десктоп):
+       без дополнительного бокового inset у внутреннего .container; зазор между любыми соседними
+       блоками = var(--gap) (в т.ч. через divider на границе секций — суммарно тоже ровно gap). */
+    .main-content .container { padding-left: 0; padding-right: 0; }
+    .main-content section > .container > * { margin-bottom: 0 !important; }
+    .main-content section > .container > * + * { margin-top: var(--gap) !important; }
+
     /* ══════════════════════════════════════════════════════════
        ФИКСИРОВАННАЯ ШАПКА И НАВИГАЦИЯ
     ══════════════════════════════════════════════════════════ */
@@ -1858,30 +1865,20 @@
       .sidebar {
         display: none !important;
       }
+      /* Колонка контента — в той же ширине, что и строка шапки (.hdr-inner):
+         тот же боковой inset 20 px → все блоки ровно под логотипом и кнопками */
       .main-content {
         max-width: 100%;
-        padding: 16px 14px 60px;
+        padding: 16px 20px 60px;
       }
       .app-layout {
         max-width: 100%;
       }
     }
 
-    /* ─── Десктоп (боковая панель видна): единый ритм и выравнивание с hero ─── */
+    /* ─── Десктоп (боковая панель видна): выравнивание с hero и шапкой ─── */
     @media (min-width: 1201px) {
       .app-layout { padding-inline: clamp(16px, 3.5vw, 44px); }
-
-      /* карточки/hero — в той же колонке, что блоки ниже (убран дополнительный inset .container) */
-      .main-content .container {
-        padding-left: 0;
-        padding-right: 0;
-      }
-
-      /* все вертикальные зазоры между блоками = var(--gap), как и отступ до боковой панели */
-      .main-content section > .container > * { margin-bottom: 0 !important; }
-      .main-content section > .container > * + * { margin-top: var(--gap) !important; }
-
-      .main-content .sec-head { margin-bottom: 0; }
 
       /* соседние текстовые вставки — одинаковой высоты (нижний край выровнен) */
       .grid-2 { align-items: stretch; }
