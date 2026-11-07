@@ -1,0 +1,136 @@
+browser: Chrome/156.0.8078.80
+
+--- 1) ╨│╨╡╨╛╨╝╨╡╤В╤А╨╕╤П (px; t/b тАФ ╨╛╤В ╨▓╨╡╤А╤Е╨░ ╨┤╨╛╨║╤Г╨╝╨╡╨╜╤В╨░) ---
+{
+  "vw": 1920,
+  "appLayout": {
+    "l": 235,
+    "r": 1675,
+    "t": 0,
+    "b": 38428,
+    "w": 1440
+  },
+  "sidebar": {
+    "l": 279,
+    "r": 569,
+    "t": 86,
+    "b": 1060,
+    "w": 290
+  },
+  "mainContent": {
+    "l": 605,
+    "r": 1631,
+    "t": 0,
+    "b": 38428,
+    "w": 1026
+  },
+  "heroSection": {
+    "l": 605,
+    "r": 1631,
+    "t": 20,
+    "b": 970,
+    "w": 1026
+  },
+  "heroContainer": {
+    "l": 748,
+    "r": 1488,
+    "t": 166,
+    "b": 783,
+    "w": 741
+  },
+  "heroInner": {
+    "l": 748,
+    "r": 1488,
+    "t": 166,
+    "b": 783,
+    "w": 741
+  },
+  "card1": {
+    "l": 605,
+    "r": 1631,
+    "t": 1305,
+    "b": 2279,
+    "w": 1026
+  },
+  "graphWrap": {
+    "l": 644,
+    "r": 1100,
+    "t": 25526,
+    "b": 25794,
+    "w": 456
+  },
+  "gapVar": "clamp(20px, 3.2vw, 36px)"
+}
+
+>>> GAP ╨▒╨╗╨╛╨║тЖТsidebar = 36px ; --gap = clamp(20px, 3.2vw, 36px)
+>>> hero.w=1026  card1.w=1026  ╬Ф=0px
+>>> hero.l=605 card1.l=605
+>>> hero-inner.w=741 vs card1.w=1026
+
+--- 2) ╨▓╨╡╤А╤В╨╕╨║╨░╨╗╤М╨╜╤Л╨╣ ╤А╨╕╤В╨╝ ╨▓╨╜╤Г╤В╤А╨╕ #bigo (╨┐╤А╤П╨╝╤Л╨╡ ╨┤╨╡╤В╨╕ .container) ---
+gap=   36 | sec-head rv vis тЖТ glass card-hover topic-card rv | prevMB=0px
+gap=   14 | glass card-hover topic-card rv тЖТ grid-3 | prevMB=0px
+gap=   58 | grid-3 тЖТ glass bigo-chart rv | prevMB=0px
+gap=   36 | glass bigo-chart rv тЖТ topic-card glass rv rv-d1 | prevMB=0px
+
+--- 3) inline-margin ╨▓ main-content (╨╜╨╡╤А╨░╨▓╨╜╤Л╨╣ ╤А╨╕╤В╨╝) ---
+╨▓╤Б╨╡╨│╨╛ ╤Н╨╗╨╡╨╝╨╡╨╜╤В╨╛╨▓ ╤Б inline-margin: 45
+  UL :: margin-bottom:20px
+  H5 :: margin-bottom:10px
+  P :: margin-bottom:10px
+  code-breakdown :: margin-top:0
+  H5 :: margin-bottom:10px
+  P :: margin-bottom:10px
+  code-breakdown :: margin-top:0
+  DIV :: margin-top:20px
+  H5 :: margin-bottom:10px
+  code-breakdown :: margin-top:0
+  P :: margin-bottom:8px
+  CODE :: margin-bottom:8px
+  code-breakdown :: margin-top:0
+  P :: margin-bottom:8px
+  P :: margin-bottom:6px
+  P :: margin-bottom:8px
+  grid-2 :: margin-top:24px
+  H4 :: margin-bottom:12px
+  H4 :: margin-bottom:12px
+  OL :: margin-left:24px ; margin-bottom:20px
+  topic-h :: margin-top:28px
+  topic-h :: margin-top:32px
+  topic-card glass rv rv-d1 :: margin-top:24px
+  code-breakdown :: margin-top:16px
+  H4 :: margin-bottom:10px
+  H4 :: margin-bottom:10px
+  H4 :: margin:24px 0 12px
+  UL :: margin-bottom:24px
+  grid-2 :: margin-top:20px
+  code-section :: margin-top:20px
+  H5 :: margin-bottom:12px
+  topic-card glass rv rv-d1 :: margin-top:24px
+  grid-2 :: margin-top:20px
+  H5 :: margin-bottom:10px
+  P :: margin-bottom:10px
+  code-breakdown :: margin-top:0
+  H5 :: margin-bottom:10px
+  P :: margin-bottom:10px
+  code-breakdown :: margin-top:0
+  H5 :: margin-bottom:12px
+  P :: margin-bottom:14px
+  code-breakdown :: margin-top:0
+  H5 :: margin-bottom:12px
+  P :: margin-bottom:14px
+  code-breakdown :: margin-top:0
+
+--- 4) reveal-╤Б╨╕╤Б╤В╨╡╨╝╨░ (.rv) ---
+{"transition":"opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.32s, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.32s","opacity":"0.132675","transform":"matrix(1, 0, 0, 1, 0, 19.0812)","totalRv":47,"visNow":1,"belowFoldNotVis":46}
+
+--- 5) ╨Т╨Р╨Ы╨Ш╨Ф╨Р╨ж╨Ш╨п: ╨▓╤Л╤А╨░╨▓╨╜╨╕╨▓╨░╨╜╨╕╨╡ ╨╕ ╨╡╨┤╨╕╨╜╤Л╨╣ ╤А╨╕╤В╨╝ ---
+gapVar px: 36
+PASS | hero.l == card.l (╨╗╨╡╨▓╤Л╨╣ ╨║╤А╨░╨╣, ┬▒2px) :: 605 vs 605
+PASS | hero.r == card.r (╨┐╤А╨░╨▓╤Л╨╣ ╨║╤А╨░╨╣, ┬▒2px) :: 1631 vs 1631
+PASS | gap ╨▒╨╗╨╛╨║тЖТsidebar == --gap :: 36.0 px
+PASS | ╨▓╤Б╨╡ ╨▓╨╡╤А╤В╨╕╨║╨░╨╗╤М╨╜╤Л╨╡ ╨╖╨░╨╖╨╛╤А╤Л == --gap (36px) :: ╨╜╨╡╤В ╨╛╤В╨║╨╗╨╛╨╜╨╡╨╜╨╕╨╣
+PASS | ╨▒╨╡╨╖ ╨│╨╛╤А╨╕╨╖╨╛╨╜╤В╨░╨╗╤М╨╜╨╛╨│╨╛ overflow :: scrollWidth=1910, vw=1920
+PASS | .ambient-bg ╨▒╨╡╨╖ blur :: brightness(1.15)
+
+>>> ALL CHECKS PASSED

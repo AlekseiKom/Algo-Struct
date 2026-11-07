@@ -96,6 +96,8 @@
       line-height: 1.68;
       color: var(--text-main);
       background-color: var(--bg-primary);
+      /* overflow-x только на корне (html): на <body> он создаёт scroll-контейнер и ломает position:sticky */
+      overflow-x: hidden;
       scroll-behavior: smooth;
       scroll-padding-top: calc(var(--header-h) + 24px);
       -webkit-font-smoothing: antialiased;
@@ -105,7 +107,6 @@
     body {
       min-height: 100vh;
       background-color: transparent !important;
-      overflow-x: hidden;
       position: relative;
     }
 
@@ -154,7 +155,7 @@
       background-repeat: no-repeat;
       background-position: center center;
       background-size: cover;
-      filter: brightness(1.15) blur(2px);
+      filter: brightness(1.15);
     }
 
     .ambient-matrix {
@@ -192,12 +193,15 @@
       padding: 0 clamp(16px, 3.5vw, 44px);
     }
 
+    /* Единый вертикальный ритм: зазор между ЛЮБЫМИ двумя соседними блоками = var(--gap).
+       Секции без собственного вертикального padding — границы глав задаёт только divider. */
     section {
-      padding: clamp(70px, 10vh, 120px) 0;
+      padding: 0;
     }
 
     .divider {
       height: 1px;
+      margin: calc((var(--gap) - 1px) / 2) 0; /* сверху и снизу ровно (gap − линия)/2 → итог = var(--gap) */
       background: linear-gradient(90deg, transparent, rgba(147, 197, 253, 0.14), transparent);
     }
 
@@ -391,8 +395,9 @@
       visibility: visible;
     }
 
-    @media (max-width: 980px) {
+    @media (max-width: 1200px) {
       .hdr-nav { display: none; }
+      /* Бургер — только когда боковая панель скрыта (≤1200px); на десктопе не показывается */
       .burger-btn { display: flex; }
     }
 
@@ -459,17 +464,18 @@
        HERO СЕКЦИЯ
     ══════════════════════════════════════════════════════════ */
     #hero {
-      min-height: 88vh;
-      display: flex;
-      align-items: center;
+      /* Компактный блок в колонке контента (как .sec-head), а не презентационный экран:
+         стеклянная подложка начинается ПОД фиксированным хедером, на той же линии,
+         где «прилипает» боковая панель (sticky top = var(--header-h) + 20px). */
+      margin-top: var(--header-h);
       text-align: center;
-      padding-top: var(--header-h);
+      padding: 0; /* отменяем общий ритм section — вертикальный ритм задаёт .hero-inner, как у .sec-head */
     }
 
     .hero-inner {
       max-width: 920px;
       margin: 0 auto;
-      padding: clamp(40px, 7vh, 80px) 0;
+      padding: clamp(24px, 4vh, 36px) 0; /* тот же вертикальный ритм, что у .sec-head */
     }
 
     .hero-pill {
@@ -485,7 +491,7 @@
       letter-spacing: 0.08em;
       text-transform: uppercase;
       color: var(--blue-light);
-      margin-bottom: 24px;
+      margin-bottom: 12px; /* как .sec-eye, а не 24px */
     }
 
     .pill-dot {
@@ -502,12 +508,13 @@
       50% { opacity: 0.5; transform: scale(0.75); }
     }
 
+    /* Заголовок/описание героя — в том же масштабе, что заголовки секций (.sec-title / .sec-desc) */
     .hero-title {
-      font-size: clamp(3rem, 7.8vw, 5.8rem);
+      font-size: clamp(1.7rem, 3.4vw, 2.4rem);
       font-weight: 800;
-      letter-spacing: -0.04em;
-      line-height: 1.02;
-      margin-bottom: 24px;
+      letter-spacing: -0.03em;
+      line-height: 1.12;
+      margin-bottom: 14px;
     }
 
     .hero-title .l1 {
@@ -524,56 +531,11 @@
     }
 
     .hero-sub {
-      font-size: clamp(1.05rem, 2vw, 1.28rem);
+      font-size: clamp(0.95rem, 1.8vw, 1.12rem);
       color: var(--text-muted);
-      max-width: 660px;
-      margin: 0 auto 38px;
-      line-height: 1.65;
-    }
-
-    .hero-cta {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 14px;
-      flex-wrap: wrap;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 13px 26px;
-      border-radius: var(--radius-md);
-      font-size: 0.95rem;
-      font-weight: 600;
-      border: 1px solid transparent;
-      transition: transform var(--trans-fast), box-shadow var(--trans-fast), background var(--trans-fast);
-      white-space: nowrap;
-    }
-
-    .btn-primary {
-      background: linear-gradient(135deg, var(--blue-primary), var(--violet-primary));
-      color: var(--text-white);
-      box-shadow: 0 8px 24px var(--blue-glow), var(--rim-top);
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 12px 32px rgba(59, 130, 246, 0.45), var(--rim-top);
-    }
-
-    .btn-ghost {
-      background: rgba(13, 26, 56, 0.7);
-      border-color: var(--border-glass);
-      color: var(--text-main);
-      backdrop-filter: blur(12px);
-    }
-
-    .btn-ghost:hover {
-      background: rgba(30, 58, 138, 0.35);
-      border-color: var(--border-glass-hover);
-      transform: translateY(-2px);
+      max-width: 640px;
+      margin: 0 auto;
+      line-height: 1.7;
     }
 
     /* ══════════════════════════════════════════════════════════
@@ -582,6 +544,7 @@
     .sec-head {
       text-align: center;
       margin-bottom: clamp(40px, 6vw, 68px);
+      padding: clamp(26px, 4vh, 44px) clamp(18px, 3.5vw, 48px);
     }
 
     .sec-eye {
@@ -595,7 +558,7 @@
     }
 
     .sec-title {
-      font-size: clamp(2rem, 4.6vw, 3.2rem);
+      font-size: clamp(1.7rem, 3.4vw, 2.4rem);
       font-weight: 800;
       letter-spacing: -0.03em;
       line-height: 1.12;
@@ -624,7 +587,7 @@
     }
 
     .topic-lead {
-      font-size: 1.05rem;
+      font-size: 0.96rem;
       color: var(--text-main);
       line-height: 1.72;
       margin-bottom: 20px;
@@ -1370,13 +1333,13 @@
     /* ══════════════════════════════════════════════════════════
        ФУТЕР
     ══════════════════════════════════════════════════════════ */
+    /* Футер — стеклянная карточка в стиле остальных блоков сайта (.glass) */
     footer {
       text-align: center;
-      padding: 60px 0 44px;
-      border-top: 1px solid var(--border-glass);
+      margin-top: var(--gap); /* тот же ритм, что между любыми другими блоками */
+      padding: clamp(28px, 4vh, 40px) clamp(16px, 3.5vw, 44px);
       color: var(--text-dim);
       font-size: 0.88rem;
-      background: rgba(2, 6, 16, 0.4);
     }
 
     footer strong { color: var(--blue-light); }
@@ -1384,13 +1347,14 @@
     /* ══════════════════════════════════════════════════════════
        REVEAL ПЛАВНОСТЬ
     ══════════════════════════════════════════════════════════ */
-    .rv {
+    /* Reveal активен только при включённом JS (html.js): без JS весь контент виден сразу */
+    html.js .rv {
       opacity: 0;
       transform: translateY(22px);
       transition: opacity 0.6s var(--trans-normal), transform 0.6s var(--trans-normal);
     }
 
-    .rv.vis {
+    html.js .rv.vis {
       opacity: 1;
       transform: translateY(0);
     }
@@ -1405,11 +1369,18 @@
       box-sizing: border-box;
     }
 
-    html, body {
+    /* ВАЖНО: overflow-x:hidden только на <html>, НЕ на <body>.
+       На <body> любое значение overflow (кроме visible) превращает body в scroll-container —
+       это ломает position:sticky у .sidebar (stick-состояние считается от body, а не от viewport). */
+    html {
       max-width: 100%;
       overflow-x: hidden;
-      position: relative;
       -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+      max-width: 100%;
+      position: relative;
     }
 
     .wrap {
@@ -1489,7 +1460,6 @@
     @media (max-width: 980px) {
       .hdr-nav { display: none; }
       .burger-btn { display: flex; }
-      .hero-title { font-size: clamp(2.4rem, 7.5vw, 4.4rem); }
     }
 
     /* ─── Адаптивность: Планшеты портрет (<= 860px) ─── */
@@ -1498,8 +1468,9 @@
         grid-template-columns: 1fr;
         gap: 18px;
       }
-      .sec-title {
-        font-size: clamp(1.6rem, 5vw, 2.3rem);
+      .sec-title,
+      .hero-title {
+        font-size: clamp(1.5rem, 4.4vw, 2rem);
       }
       .topic-card {
         padding: clamp(18px, 3.2vw, 28px);
@@ -1511,39 +1482,12 @@
       .container {
         padding: 0 16px;
       }
-      .hero {
-        padding: 48px 0 32px;
-      }
       .hero-pill {
         font-size: 0.7rem;
         padding: 6px 12px;
         white-space: normal;
         text-align: center;
         line-height: 1.4;
-      }
-      .hero-title {
-        font-size: clamp(1.95rem, 8.2vw, 2.9rem);
-        margin-bottom: 16px;
-      }
-      .hero-desc {
-        font-size: 0.95rem;
-        margin-bottom: 24px;
-      }
-      .hero-stats {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 8px;
-        max-width: 360px;
-        margin: 0 auto;
-      }
-      .h-stat {
-        padding: 12px 14px;
-      }
-      .h-num {
-        font-size: 1.65rem;
-      }
-      .h-lbl {
-        font-size: 0.68rem;
       }
 
       /* Сортировочная интерактивная песочница */
@@ -1675,26 +1619,6 @@
       .logo span {
         font-size: 0.92rem;
       }
-      .hero-title {
-        font-size: 1.85rem;
-        line-height: 1.1;
-      }
-      .hero-desc {
-        font-size: 0.88rem;
-      }
-      .hero-stats {
-        grid-template-columns: 1fr 1fr;
-        gap: 6px;
-      }
-      .h-stat {
-        padding: 10px 8px;
-      }
-      .h-num {
-        font-size: 1.45rem;
-      }
-      .h-lbl {
-        font-size: 0.65rem;
-      }
       .ht-row {
         grid-template-columns: 24px 1fr 1fr;
         gap: 4px;
@@ -1803,11 +1727,13 @@
     /* ══════ СТРУКТУРНАЯ ЦЕНТРОВАННАЯ РАЗМЕТКА (NETWORK-PROJECT СТИЛЬ) ══════ */
     .app-layout {
       display: flex;
+      align-items: flex-start;
       max-width: 1440px;
       margin: 0 auto;
       min-height: calc(100vh - var(--header-h));
       position: relative;
       justify-content: center;
+      gap: var(--gap); /* блок ↔ боковая панель = тот же ритм, что между блоками */
     }
 
     .sidebar {
@@ -1817,7 +1743,7 @@
       top: calc(var(--header-h) + 20px);
       height: calc(100vh - var(--header-h) - 40px);
       overflow-y: auto;
-      margin: 20px 0 20px 16px;
+      margin: 20px 0;
       padding: 18px 12px;
       border-radius: var(--radius-lg);
       border: 1px solid var(--border-glass);
@@ -1860,7 +1786,9 @@
     .sidebar-nav {
       display: flex;
       flex-direction: column;
-      gap: 4px;
+      gap: 4px; /* минимальный зазор при нехватке высоты (overflow) */
+      flex: 1; /* занять всю оставшуюся высоту панели */
+      justify-content: space-between; /* равные интервалы по всей высоте; новый пункт сам сдвигает предыдущие */
     }
 
     .s-link {
@@ -1871,7 +1799,7 @@
       border-radius: var(--radius-md);
       color: var(--text-main);
       text-decoration: none;
-      font-size: 0.84rem;
+      font-size: 0.92rem; /* было 0.84 — ссылки крупнее */
       font-weight: 500;
       transition: all 0.2s ease;
       position: relative;
@@ -1923,7 +1851,7 @@
       flex: 1;
       min-width: 0;
       max-width: 1100px;
-      padding: 20px 24px 60px;
+      padding: 20px 0 40px; /* без боковых отступов — карточки и hero в одной колонке */
     }
 
     @media (max-width: 1200px) {
@@ -1937,6 +1865,26 @@
       .app-layout {
         max-width: 100%;
       }
+    }
+
+    /* ─── Десктоп (боковая панель видна): единый ритм и выравнивание с hero ─── */
+    @media (min-width: 1201px) {
+      .app-layout { padding-inline: clamp(16px, 3.5vw, 44px); }
+
+      /* карточки/hero — в той же колонке, что блоки ниже (убран дополнительный inset .container) */
+      .main-content .container {
+        padding-left: 0;
+        padding-right: 0;
+      }
+
+      /* все вертикальные зазоры между блоками = var(--gap), как и отступ до боковой панели */
+      .main-content section > .container > * { margin-bottom: 0 !important; }
+      .main-content section > .container > * + * { margin-top: var(--gap) !important; }
+
+      .main-content .sec-head { margin-bottom: 0; }
+
+      /* соседние текстовые вставки — одинаковой высоты (нижний край выровнен) */
+      .grid-2 { align-items: stretch; }
     }
 
     /* ══════ КВАДРАТНЫЕ КНОПКИ В ХЕДЕРЕ (ЕДИНЫЙ ГАРНИТУР) ══════ */
@@ -1994,8 +1942,8 @@
       gap: 8px;
     }
 
-    /* Все кнопки в хедере: строго квадратные со скруглением, как бургер */
-    .hdr-icon-btn, .burger-btn {
+    /* Все кнопки в хедере: строго квадратные со скруглением (бургер показывается только через media-запрос) */
+    .hdr-icon-btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -2028,6 +1976,15 @@
       }
       .mobile-only {
         display: inline-flex !important;
+      }
+    }
+
+    /* ─── ДЕСКТОП: хедер ровно по ширине основных блоков (.app-layout) — боковая панель + контент, не шире ─── */
+    @media (min-width: 1201px) {
+      .hdr-inner {
+        max-width: 1440px; /* то же, что у .app-layout */
+        margin: 0 auto;
+        padding: 0 clamp(16px, 3.5vw, 44px); /* идентично desktop-padding-inline .app-layout */
       }
     }
 
@@ -2260,6 +2217,7 @@
   </style>
 </head>
 <body>
+<script>document.documentElement.classList.add('js');</script>
 
 <!-- ══════════ AMBIENT BACKGROUND & ARCHITECTURAL GRID ══════════ -->
 <div class="ambient-bg"></div>
@@ -2411,7 +2369,7 @@
 </button>
 
 <!-- ══════════ HERO СЕКЦИЯ ══════════ -->
-<section id="hero">
+<section id="hero" class="glass">
   <div class="container">
     <div class="hero-inner">
       <div class="hero-pill">
@@ -2425,10 +2383,6 @@
       <p class="hero-sub">
         Полное погружение в фундаментальный мир алгоритмов: от физики оперативной памяти до NP-полных вызовов. Строгий темный дизайн, интерактивные песочницы, чистый Python и никакой «воды».
       </p>
-      <div class="hero-cta">
-        <a href="#bigo" class="btn btn-primary">Начать изучение →</a>
-        <a href="#sorting" class="btn btn-ghost">Песочница сортировок</a>
-      </div>
     </div>
   </div>
 </section>
@@ -2440,7 +2394,7 @@
 ══════════════════════════════════════════════════════════ -->
 <section id="bigo">
   <div class="container">
-    <div class="sec-head rv">
+    <div class="sec-head glass rv">
       <span class="sec-eye">Раздел 1 · Анализ алгоритмической сложности</span>
       <h2 class="sec-title">«О-большое»: Анатомия скорости</h2>
       <p class="sec-desc">Почему секундомер бесполезен для оценки программ и как математика предсказывает поведение кода на миллиардах пользователей.</p>
@@ -2665,7 +2619,7 @@
 ══════════════════════════════════════════════════════════ -->
 <section id="arrays-lists">
   <div class="container">
-    <div class="sec-head rv">
+    <div class="sec-head glass rv">
       <span class="sec-eye">Раздел 2 · Фундаментальные структуры данных</span>
       <h2 class="sec-title">Массивы vs Связные списки</h2>
       <p class="sec-desc">Как устроена оперативная память компьютера и почему выбор между массивом и списком — это выбор между быстрым чтением и быстрой записью.</p>
@@ -2784,7 +2738,7 @@
 ══════════════════════════════════════════════════════════ -->
 <section id="recursion-stack">
   <div class="container">
-    <div class="sec-head rv">
+    <div class="sec-head glass rv">
       <span class="sec-eye">Раздел 3 · Философия самоподобия и стек вызовов</span>
       <h2 class="sec-title">Рекурсия и Стек (Call Stack)</h2>
       <p class="sec-desc">Как функция вызывает саму себя, почему стопка тарелок правит миром памяти и что на самом деле происходит при переполнении стека.</p>
@@ -2859,7 +2813,7 @@
 ══════════════════════════════════════════════════════════ -->
 <section id="sorting">
   <div class="container">
-    <div class="sec-head rv">
+    <div class="sec-head glass rv">
       <span class="sec-eye">Раздел 4 · Эволюция упорядочивания</span>
       <h2 class="sec-title">Сортировки &amp; Интерактивная песочница</h2>
       <p class="sec-desc">От квадратичного перебора к быстрой сортировке «Разделяй и властвуй». Запусти визуализацию и наблюдай за алгоритмом вживую!</p>
@@ -3094,7 +3048,7 @@
 ══════════════════════════════════════════════════════════ -->
 <section id="hash-tables">
   <div class="container">
-    <div class="sec-head rv">
+    <div class="sec-head glass rv">
       <span class="sec-eye">Раздел 5 · Мгновенный ассоциативный доступ</span>
       <h2 class="sec-title">Хеш-таблицы (Hash Tables)</h2>
       <p class="sec-desc">Как превратить произвольную строку в индекс ячейки памяти за миллионную долю секунды, победить неизбежные коллизии и построить веб-кэш.</p>
@@ -3326,7 +3280,7 @@
 ══════════════════════════════════════════════════════════ -->
 <section id="trees-heaps">
   <div class="container">
-    <div class="sec-head rv">
+    <div class="sec-head glass rv">
       <span class="sec-eye">Раздел 6 · Иерархические структуры &amp; Очереди с приоритетом</span>
       <h2 class="sec-title">Двоичные кучи &amp; Сбалансированные деревья</h2>
       <p class="sec-desc">Как упаковать разветвленное дерево в плоский массив без единого указателя и почему куча обыгрывает самописные деревья на уровне процессорного кэша.</p>
@@ -3433,7 +3387,7 @@
 ══════════════════════════════════════════════════════════ -->
 <section id="graphs-bfs">
   <div class="container">
-    <div class="sec-head rv">
+    <div class="sec-head glass rv">
       <span class="sec-eye">Раздел 7 · Моделирование связей и сетей</span>
       <h2 class="sec-title">Графы и Поиск в ширину (BFS)</h2>
       <p class="sec-desc">Как социальные сети находят друзей друзей, а навигаторы строят маршруты с минимальным числом пересадок.</p>
@@ -3538,7 +3492,7 @@
 ══════════════════════════════════════════════════════════ -->
 <section id="dijkstra">
   <div class="container">
-    <div class="sec-head rv">
+    <div class="sec-head glass rv">
       <span class="sec-eye">Раздел 8 · Самый быстрый путь &amp; A*</span>
       <h2 class="sec-title">Алгоритм Дейкстры (Dijkstra)</h2>
       <p class="sec-desc">Когда ребра имеют стоимость, расстояние или время. Поиск глобально оптимального маршрута во взвешенных сетях.</p>
@@ -3801,7 +3755,7 @@
 ══════════════════════════════════════════════════════════ -->
 <section id="greedy-np">
   <div class="container">
-    <div class="sec-head rv">
+    <div class="sec-head glass rv">
       <span class="sec-eye">Раздел 9 · DP, Жадные стратегии &amp; NP-полнота</span>
       <h2 class="sec-title">Жадные алгоритмы &amp; NP-полнота</h2>
       <p class="sec-desc">Когда точное решение невозможно найти до конца жизни Вселенной, и спасением инженера становится «достаточно хороший» результат.</p>
@@ -4098,10 +4052,10 @@ print(min_distance("kitten", "sitting"))  # Output: 3 (k->s, e->i, +g)</pre>
 ══════════════════════════════════════════════════════════ -->
 <section id="distributed-systems">
   <div class="container">
-    <div class="sec-head rv">
+    <div class="sec-head glass rv">
       <span class="sec-eye">Раздел 10 · Highload, Big Data &amp; ИИ</span>
       <h2 class="sec-title">Распределённые системы &amp; ML Hardware: От MapReduce до FlashAttention</h2>
-      <p class="sec-sub">Когда данные превышают память одного сервера или когда модель требует петафлопсы вычислений, парадигма меняется: главным узким местом становится не тактовая частота ALU, а пропускная способность шины памяти и сети.</p>
+      <p class="sec-desc">Когда данные превышают память одного сервера или когда модель требует петафлопсы вычислений, парадигма меняется: главным узким местом становится не тактовая частота ALU, а пропускная способность шины памяти и сети.</p>
     </div>
 
     <!-- ТЕМА 1: MAPREDUCE & БУТЫЛОЧНОЕ ГОРЛЫШКО SHUFFLE -->
@@ -4201,11 +4155,9 @@ print(min_distance("kitten", "sitting"))  # Output: 3 (k->s, e->i, +g)</pre>
 </section>
 
 
-<footer>
-  <div class="container">
-    <p>Фундаментальный интерактивный справочник. По мотивам мирового бестселлера <strong>«Грокаем алгоритмы»</strong> Адитьи Бхаргавы.</p>
-    <p style="margin-top:8px;font-size:0.8rem;color:var(--text-subtle)">Algorithms &amp; Data Structures Guide · Deep Ambient Sapphire Design System</p>
-  </div>
+<footer class="glass">
+  <p>Фундаментальный интерактивный справочник. По мотивам мирового бестселлера <strong>«Грокаем алгоритмы»</strong> Адитьи Бхаргавы.</p>
+  <p style="margin-top:8px;font-size:0.8rem;color:var(--text-subtle)">Algorithms &amp; Data Structures Guide · Deep Ambient Sapphire Design System</p>
 </footer>
 
 
@@ -5037,9 +4989,12 @@ document.getElementById('btnRunDijk').addEventListener('click', runDijkstraSimul
 document.getElementById('btnResetDijk').addEventListener('click', resetDijkstra);
 
 /* ══════ SCROLL REVEAL ══════ */
+/* threshold: 0 — контент появляется в момент входа во вьюпорт (при 0.08 высокая карточка
+   "дожидалась" 8% видимости → выглядело как запаздывающая подгрузка); после reveal элемент
+   больше не наблюдается */
 const revealObs = new IntersectionObserver((entries) => {
-  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('vis'); });
-}, { threshold: 0.08 });
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('vis'); revealObs.unobserve(e.target); } });
+}, { threshold: 0, rootMargin: '0px 0px 12% 0px' }); /* анимация стартует до входа блока во вьюпорт — без рывков при скролле */
 document.querySelectorAll('.rv').forEach(el => revealObs.observe(el));
 
 /* ══════ BAR OBSERVER ══════ */
