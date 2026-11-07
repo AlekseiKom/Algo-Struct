@@ -1,0 +1,457 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="2400" viewBox="0 0 1440 2400">
+<defs>
+
+      <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#0b2361" />
+        <stop offset="20%" stop-color="#123785" />
+        <stop offset="45%" stop-color="#1849a9" />
+        <stop offset="70%" stop-color="#123785" />
+        <stop offset="100%" stop-color="#0a1f54" />
+      </linearGradient>
+
+      <!-- Vibrant luminous radial glows (headlights / nebula glows) -->
+      <radialGradient id="glowTopLeft" cx="22%" cy="10%" r="50%">
+        <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.65" />
+        <stop offset="40%" stop-color="#2563eb" stop-opacity="0.45" />
+        <stop offset="100%" stop-color="#0b2361" stop-opacity="0" />
+      </radialGradient>
+
+      <radialGradient id="glowTopRight" cx="80%" cy="18%" r="45%">
+        <stop offset="0%" stop-color="#818cf8" stop-opacity="0.55" />
+        <stop offset="50%" stop-color="#1e40af" stop-opacity="0.30" />
+        <stop offset="100%" stop-color="#0b2361" stop-opacity="0" />
+      </radialGradient>
+
+      <radialGradient id="glowCenter" cx="50%" cy="46%" r="55%">
+        <stop offset="0%" stop-color="#60a5fa" stop-opacity="0.52" />
+        <stop offset="40%" stop-color="#2563eb" stop-opacity="0.32" />
+        <stop offset="80%" stop-color="#a855f7" stop-opacity="0.22" />
+        <stop offset="100%" stop-color="#0b2361" stop-opacity="0" />
+      </radialGradient>
+
+      <radialGradient id="glowMidLeft" cx="12%" cy="62%" r="48%">
+        <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.62" />
+        <stop offset="50%" stop-color="#1d4ed8" stop-opacity="0.32" />
+        <stop offset="100%" stop-color="#0b2361" stop-opacity="0" />
+      </radialGradient>
+
+      <radialGradient id="glowBottom" cx="68%" cy="86%" r="52%">
+        <stop offset="0%" stop-color="#818cf8" stop-opacity="0.58" />
+        <stop offset="45%" stop-color="#38bdf8" stop-opacity="0.38" />
+        <stop offset="100%" stop-color="#0b2361" stop-opacity="0" />
+      </radialGradient>
+
+      <!-- Glow filter for nodes -->
+      <filter id="neonBlur" x="-30%" y="-30%" width="160%" height="160%">
+        <feGaussianBlur stdDeviation="4" result="blur" />
+        <feComposite in="SourceGraphic" in2="blur" operator="over" />
+      </filter>
+    
+</defs>
+<rect width="1440" height="2400" fill="url(#bgGrad)" />
+<rect width="1440" height="2400" fill="url(#glowTopLeft)" />
+<rect width="1440" height="2400" fill="url(#glowTopRight)" />
+<rect width="1440" height="2400" fill="url(#glowCenter)" />
+<rect width="1440" height="2400" fill="url(#glowMidLeft)" />
+<rect width="1440" height="2400" fill="url(#glowBottom)" />
+<!-- Blueprint Coordinate Grid -->
+<g stroke="rgba(147, 197, 253, 0.28)" stroke-width="1.2" stroke-dasharray="4,8">
+<line x1="100" y1="0" x2="100" y2="2400" />
+<line x1="260" y1="0" x2="260" y2="2400" />
+<line x1="420" y1="0" x2="420" y2="2400" />
+<line x1="580" y1="0" x2="580" y2="2400" />
+<line x1="740" y1="0" x2="740" y2="2400" />
+<line x1="900" y1="0" x2="900" y2="2400" />
+<line x1="1060" y1="0" x2="1060" y2="2400" />
+<line x1="1220" y1="0" x2="1220" y2="2400" />
+<line x1="1380" y1="0" x2="1380" y2="2400" />
+<line x1="0" y1="80" x2="1440" y2="80" />
+<line x1="0" y1="260" x2="1440" y2="260" />
+<line x1="0" y1="440" x2="1440" y2="440" />
+<line x1="0" y1="620" x2="1440" y2="620" />
+<line x1="0" y1="800" x2="1440" y2="800" />
+<line x1="0" y1="980" x2="1440" y2="980" />
+<line x1="0" y1="1160" x2="1440" y2="1160" />
+<line x1="0" y1="1340" x2="1440" y2="1340" />
+<line x1="0" y1="1520" x2="1440" y2="1520" />
+<line x1="0" y1="1700" x2="1440" y2="1700" />
+<line x1="0" y1="1880" x2="1440" y2="1880" />
+<line x1="0" y1="2060" x2="1440" y2="2060" />
+<line x1="0" y1="2240" x2="1440" y2="2240" />
+</g>
+<!-- Luminous Circuit Traces & PCB Buses -->
+<g stroke="#38bdf8" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.85">
+<line x1="30" y1="140" x2="1410" y2="140" stroke-dasharray="14,14" stroke="#7dd3fc" stroke-width="2" />
+<line x1="30" y1="320" x2="1410" y2="320" stroke-dasharray="14,14" stroke="#7dd3fc" stroke-width="2" />
+<line x1="30" y1="580" x2="1410" y2="580" stroke-dasharray="14,14" stroke="#7dd3fc" stroke-width="2" />
+<line x1="30" y1="860" x2="1410" y2="860" stroke-dasharray="14,14" stroke="#7dd3fc" stroke-width="2" />
+<line x1="30" y1="1140" x2="1410" y2="1140" stroke-dasharray="14,14" stroke="#7dd3fc" stroke-width="2" />
+<line x1="30" y1="1420" x2="1410" y2="1420" stroke-dasharray="14,14" stroke="#7dd3fc" stroke-width="2" />
+<line x1="30" y1="1700" x2="1410" y2="1700" stroke-dasharray="14,14" stroke="#7dd3fc" stroke-width="2" />
+<line x1="30" y1="1980" x2="1410" y2="1980" stroke-dasharray="14,14" stroke="#7dd3fc" stroke-width="2" />
+<line x1="30" y1="2240" x2="1410" y2="2240" stroke-dasharray="14,14" stroke="#7dd3fc" stroke-width="2" />
+<path d="M 60,180 L 220,180 L 260,220 L 460,220 L 490,190 L 680,190 L 720,230 L 980,230 L 1020,190 L 1380,190" />
+<path d="M 80,240 L 200,240 L 240,280 L 440,280 L 480,250 L 640,250 L 680,290 L 920,290 L 960,250 L 1360,250" />
+<path d="M 260,220 L 260,380 L 310,430 L 520,430 L 560,390 L 740,390 L 780,430 L 1040,430 L 1080,390 L 1260,390" />
+<path d="M 720,230 L 720,350 L 760,390 L 960,390 L 1000,430 L 1180,430" />
+<path d="M 50,700 L 180,700 L 230,750 L 480,750 L 520,710 L 720,710 L 760,750 L 1000,750 L 1040,700 L 1390,700" />
+<path d="M 230,750 L 230,900 L 280,950 L 500,950 L 540,910 L 750,910 L 790,950 L 1060,950 L 1100,900 L 1320,900" />
+<path d="M 520,710 L 520,840 L 560,880 L 780,880 L 820,840 L 1020,840" />
+<path d="M 760,750 L 760,880 L 800,920 L 980,920 L 1020,880 L 1240,880" />
+<path d="M 60,1260 L 210,1260 L 260,1310 L 490,1310 L 530,1270 L 740,1270 L 780,1310 L 1020,1310 L 1060,1260 L 1380,1260" />
+<path d="M 260,1310 L 260,1460 L 310,1510 L 530,1510 L 570,1470 L 790,1470 L 830,1510 L 1070,1510 L 1110,1460 L 1340,1460" />
+<path d="M 530,1270 L 530,1390 L 570,1430 L 780,1430 L 820,1390 L 1040,1390" />
+<path d="M 780,1310 L 780,1430 L 820,1470 L 990,1470 L 1030,1430 L 1250,1430" />
+<path d="M 50,1800 L 190,1800 L 240,1850 L 470,1850 L 510,1810 L 730,1810 L 770,1850 L 1010,1850 L 1050,1800 L 1390,1800" />
+<path d="M 240,1850 L 240,2000 L 290,2050 L 510,2050 L 550,2010 L 760,2010 L 800,2050 L 1050,2050 L 1090,2000 L 1330,2000" />
+<path d="M 510,1810 L 510,1930 L 550,1970 L 770,1970 L 810,1930 L 1030,1930" />
+<path d="M 770,1850 L 770,1980 L 810,2020 L 980,2020 L 1020,1980 L 1260,1980" />
+<path d="M 80,2220 L 260,2220 L 300,2260 L 540,2260 L 580,2220 L 840,2220 L 880,2260 L 1120,2260 L 1160,2220 L 1360,2220" />
+</g>
+<!-- Glowing Solder Vias -->
+<g fill="#38bdf8" stroke="#ffffff" stroke-width="2">
+<circle cx="60" cy="180" r="6" />
+<circle cx="60" cy="180" r="13" fill="none" stroke="#38bdf8" stroke-width="1.8" opacity="0.75" />
+<circle cx="220" cy="180" r="6" />
+<circle cx="220" cy="180" r="13" fill="none" stroke="#38bdf8" stroke-width="1.8" opacity="0.75" />
+<circle cx="460" cy="220" r="6" />
+<circle cx="460" cy="220" r="13" fill="none" stroke="#38bdf8" stroke-width="1.8" opacity="0.75" />
+<circle cx="680" cy="190" r="6" />
+<circle cx="680" cy="190" r="13" fill="none" stroke="#38bdf8" stroke-width="1.8" opacity="0.75" />
+<circle cx="980" cy="230" r="6" />
+<circle cx="980" cy="230" r="13" fill="none" stroke="#38bdf8" stroke-width="1.8" opacity="0.75" />
+<circle cx="1380" cy="190" r="6" />
+<circle cx="1380" cy="190" r="13" fill="none" stroke="#38bdf8" stroke-width="1.8" opacity="0.75" />
+<circle cx="260" cy="380" r="6" />
+<circle cx="260" cy="380" r="13" fill="none" stroke="#38bdf8" stroke-width="1.8" opacity="0.75" />
+<circle cx="520" cy="430" r="6" />
+<circle cx="520" cy="430" r="13" fill="none" stroke="#38bdf8" stroke-width="1.8" opacity="0.75" />
+<circle cx="740" cy="390" r="6" />
+<circle cx="740" cy="390" r="13" fill="none" stroke="#38bdf8" stroke-width="1.8" opacity="0.75" />
+<circle cx="1040" cy="430" r="6" />
+<circle cx="1040" cy="430" r="13" fill="none" stroke="#38bdf8" stroke-width="1.8" opacity="0.75" />
+<circle cx="1260" cy="390" r="6" />
+<circle cx="1260" cy="390" r="13" fill="none" stroke="#38bdf8" stroke-width="1.8" opacity="0.75" />
+<circle cx="50" cy="700" r="6" />
+<circle cx="50" cy="700" r="13" fill="none" stroke="#38bdf8" stroke-width="1.8" opacity="0.75" />
+<circle cx="230" cy="750" r="6" />
+<circle cx="230" cy="750" r="13" fill="none" stroke="#38bdf8" stroke-width="1.8" opacity="0.75" />
+<circle cx="480" cy="750" r="6" />
+<circle cx="480" cy="750" r="13" fill="none" stroke="#38bdf8" stroke-width="1.8" opacity="0.75" />
+<circle cx="720" cy="710" r="6" />
+<circle cx="720" cy="710" r="13" fill="none" stroke="#38bdf8" stroke-width="1.8" opacity="0.75" />
+<circle cx="1000" cy="750" r="6" />
+<circle cx="1000" cy="750" r="13" fill="none" stroke="#38bdf8" stroke-width="1.8" opacity="0.75" />
+<circle cx="1390" cy="700" r="6" />
+<circle cx="1390" cy="700" r="13" fill="none" stroke="#38bdf8" stroke-width="1.8" opacity="0.75" />
+<circle cx="280" cy="950" r="6" />
+<circle cx="280" cy="950" r="13" fill="none" stroke="#38bdf8" stroke-width="1.8" opacity="0.75" />
+<circle cx="500" cy="950" r="6" />
+<circle cx="500" cy="950" r="13" fill="none" stroke="#38bdf8" stroke-width="1.8" opacity="0.75" />
+<circle cx="750" cy="910" r="6" />
+<circle cx="750" cy="910" r="13" fill="none" stroke="#38bdf8" stroke-width="1.8" opacity="0.75" />
+<circle cx="1060" cy="950" r="6" />
+<circle cx="1060" cy="950" r="13" fill="none" stroke="#38bdf8" stroke-width="1.8" opacity="0.75" />
+<circle cx="1320" cy="900" r="6" />
+<circle cx="1320" cy="900" r="13" fill="none" stroke="#38bdf8" stroke-width="1.8" opacity="0.75" />
+<circle cx="60" cy="1260" r="6" />
+<circle cx="60" cy="1260" r="13" fill="none" stroke="#38bdf8" stroke-width="1.8" opacity="0.75" />
+<circle cx="260" cy="1310" r="6" />
+<circle cx="260" cy="1310" r="13" fill="none" stroke="#38bdf8" stroke-width="1.8" opacity="0.75" />
+<circle cx="490" cy="1310" r="6" />
+<circle cx="490" cy="1310" r="13" fill="none" stroke="#38bdf8" stroke-width="1.8" opacity="0.75" />
+<circle cx="740" cy="1270" r="6" />
+<circle cx="740" cy="1270" r="13" fill="none" stroke="#38bdf8" stroke-width="1.8" opacity="0.75" />
+<circle cx="1020" cy="1310" r="6" />
+<circle cx="1020" cy="1310" r="13" fill="none" stroke="#38bdf8" stroke-width="1.8" opacity="0.75" />
+<circle cx="1380" cy="1260" r="6" />
+<circle cx="1380" cy="1260" r="13" fill="none" stroke="#38bdf8" stroke-width="1.8" opacity="0.75" />
+<circle cx="310" cy="1510" r="6" />
+<circle cx="310" cy="1510" r="13" fill="none" stroke="#38bdf8" stroke-width="1.8" opacity="0.75" />
+<circle cx="530" cy="1510" r="6" />
+<circle cx="530" cy="1510" r="13" fill="none" stroke="#38bdf8" stroke-width="1.8" opacity="0.75" />
+<circle cx="790" cy="1470" r="6" />
+<circle cx="790" cy="1470" r="13" fill="none" stroke="#38bdf8" stroke-width="1.8" opacity="0.75" />
+<circle cx="1070" cy="1510" r="6" />
+<circle cx="1070" cy="1510" r="13" fill="none" stroke="#38bdf8" stroke-width="1.8" opacity="0.75" />
+<circle cx="1340" cy="1460" r="6" />
+<circle cx="1340" cy="1460" r="13" fill="none" stroke="#38bdf8" stroke-width="1.8" opacity="0.75" />
+<circle cx="50" cy="1800" r="6" />
+<circle cx="50" cy="1800" r="13" fill="none" stroke="#38bdf8" stroke-width="1.8" opacity="0.75" />
+<circle cx="240" cy="1850" r="6" />
+<circle cx="240" cy="1850" r="13" fill="none" stroke="#38bdf8" stroke-width="1.8" opacity="0.75" />
+<circle cx="470" cy="1850" r="6" />
+<circle cx="470" cy="1850" r="13" fill="none" stroke="#38bdf8" stroke-width="1.8" opacity="0.75" />
+<circle cx="730" cy="1810" r="6" />
+<circle cx="730" cy="1810" r="13" fill="none" stroke="#38bdf8" stroke-width="1.8" opacity="0.75" />
+<circle cx="1010" cy="1850" r="6" />
+<circle cx="1010" cy="1850" r="13" fill="none" stroke="#38bdf8" stroke-width="1.8" opacity="0.75" />
+<circle cx="1390" cy="1800" r="6" />
+<circle cx="1390" cy="1800" r="13" fill="none" stroke="#38bdf8" stroke-width="1.8" opacity="0.75" />
+<circle cx="290" cy="2050" r="6" />
+<circle cx="290" cy="2050" r="13" fill="none" stroke="#38bdf8" stroke-width="1.8" opacity="0.75" />
+<circle cx="510" cy="2050" r="6" />
+<circle cx="510" cy="2050" r="13" fill="none" stroke="#38bdf8" stroke-width="1.8" opacity="0.75" />
+<circle cx="760" cy="2010" r="6" />
+<circle cx="760" cy="2010" r="13" fill="none" stroke="#38bdf8" stroke-width="1.8" opacity="0.75" />
+<circle cx="1050" cy="2050" r="6" />
+<circle cx="1050" cy="2050" r="13" fill="none" stroke="#38bdf8" stroke-width="1.8" opacity="0.75" />
+<circle cx="1330" cy="2000" r="6" />
+<circle cx="1330" cy="2000" r="13" fill="none" stroke="#38bdf8" stroke-width="1.8" opacity="0.75" />
+<circle cx="80" cy="2220" r="6" />
+<circle cx="80" cy="2220" r="13" fill="none" stroke="#38bdf8" stroke-width="1.8" opacity="0.75" />
+<circle cx="300" cy="2260" r="6" />
+<circle cx="300" cy="2260" r="13" fill="none" stroke="#38bdf8" stroke-width="1.8" opacity="0.75" />
+<circle cx="580" cy="2220" r="6" />
+<circle cx="580" cy="2220" r="13" fill="none" stroke="#38bdf8" stroke-width="1.8" opacity="0.75" />
+<circle cx="880" cy="2260" r="6" />
+<circle cx="880" cy="2260" r="13" fill="none" stroke="#38bdf8" stroke-width="1.8" opacity="0.75" />
+<circle cx="1160" cy="2220" r="6" />
+<circle cx="1160" cy="2220" r="13" fill="none" stroke="#38bdf8" stroke-width="1.8" opacity="0.75" />
+<circle cx="1360" cy="2220" r="6" />
+<circle cx="1360" cy="2220" r="13" fill="none" stroke="#38bdf8" stroke-width="1.8" opacity="0.75" />
+</g>
+<!-- Matrix Code Streams (Luminous & Readable) -->
+<g font-family="Consolas, Monaco, monospace" font-size="13" font-weight="bold" letter-spacing="2">
+<text x="30" y="100" fill="#7dd3fc" opacity="0.88">01000001</text>
+<text x="30" y="126" fill="#e0f2fe" opacity="0.88">01001100</text>
+<text x="30" y="152" fill="#7dd3fc" opacity="0.88">01000111</text>
+<text x="30" y="178" fill="#e0f2fe" opacity="0.88">01001111</text>
+<text x="30" y="204" fill="#7dd3fc" opacity="0.88">0x7F4B2</text>
+<text x="30" y="230" fill="#e0f2fe" opacity="0.88">01010011</text>
+<text x="30" y="256" fill="#7dd3fc" opacity="0.88">01010100</text>
+<text x="30" y="282" fill="#e0f2fe" opacity="0.88">01010010</text>
+<text x="35" y="420" fill="#7dd3fc" opacity="0.88">O(1)_CONST</text>
+<text x="35" y="446" fill="#e0f2fe" opacity="0.88">RAM[ptr]</text>
+<text x="35" y="472" fill="#7dd3fc" opacity="0.88">0x00FF8C</text>
+<text x="35" y="498" fill="#e0f2fe" opacity="0.88">01100001</text>
+<text x="35" y="524" fill="#7dd3fc" opacity="0.88">01110010</text>
+<text x="35" y="550" fill="#e0f2fe" opacity="0.88">arr.alloc</text>
+<text x="35" y="576" fill="#7dd3fc" opacity="0.88">0xDEADBEEF</text>
+<text x="30" y="720" fill="#7dd3fc" opacity="0.88">mid=(l+h)//2</text>
+<text x="30" y="746" fill="#e0f2fe" opacity="0.88">if l<=h:</text>
+<text x="30" y="772" fill="#7dd3fc" opacity="0.88">return mid</text>
+<text x="30" y="798" fill="#e0f2fe" opacity="0.88">01001110</text>
+<text x="30" y="824" fill="#7dd3fc" opacity="0.88">0xCAFEBABE</text>
+<text x="30" y="850" fill="#e0f2fe" opacity="0.88">log2(1024)=10</text>
+<text x="30" y="876" fill="#7dd3fc" opacity="0.88">pivot=arr[0]</text>
+<text x="35" y="1040" fill="#7dd3fc" opacity="0.88">hash(k)%N</text>
+<text x="35" y="1066" fill="#e0f2fe" opacity="0.88">O(1)_lookup</text>
+<text x="35" y="1092" fill="#7dd3fc" opacity="0.88">load_factor</text>
+<text x="35" y="1118" fill="#e0f2fe" opacity="0.88">buckets[i]</text>
+<text x="35" y="1144" fill="#7dd3fc" opacity="0.88">node.next</text>
+<text x="35" y="1170" fill="#e0f2fe" opacity="0.88">01100011</text>
+<text x="35" y="1196" fill="#7dd3fc" opacity="0.88">chaining</text>
+<text x="30" y="1360" fill="#7dd3fc" opacity="0.88">deque([start])</text>
+<text x="30" y="1386" fill="#e0f2fe" opacity="0.88">popleft()</text>
+<text x="30" y="1412" fill="#7dd3fc" opacity="0.88">visited.add</text>
+<text x="30" y="1438" fill="#e0f2fe" opacity="0.88">FIFO_queue</text>
+<text x="30" y="1464" fill="#7dd3fc" opacity="0.88">dist[v]=min</text>
+<text x="30" y="1490" fill="#e0f2fe" opacity="0.88">relax(u,v)</text>
+<text x="30" y="1516" fill="#7dd3fc" opacity="0.88">01100110</text>
+<text x="35" y="1680" fill="#7dd3fc" opacity="0.88">costs[fin]=6</text>
+<text x="35" y="1706" fill="#e0f2fe" opacity="0.88">parents[fin]</text>
+<text x="35" y="1732" fill="#7dd3fc" opacity="0.88">bellman_ford</text>
+<text x="35" y="1758" fill="#e0f2fe" opacity="0.88">greedy_choice</text>
+<text x="35" y="1784" fill="#7dd3fc" opacity="0.88">final_set</text>
+<text x="35" y="1810" fill="#e0f2fe" opacity="0.88">states_needed</text>
+<text x="35" y="1836" fill="#7dd3fc" opacity="0.88">01110010</text>
+<text x="30" y="2020" fill="#7dd3fc" opacity="0.88">NP_complete</text>
+<text x="30" y="2046" fill="#e0f2fe" opacity="0.88">TSP: O(n!)</text>
+<text x="30" y="2072" fill="#7dd3fc" opacity="0.88">approx_ratio</text>
+<text x="30" y="2098" fill="#e0f2fe" opacity="0.88">set_cover</text>
+<text x="30" y="2124" fill="#7dd3fc" opacity="0.88">2^50 comb</text>
+<text x="30" y="2150" fill="#e0f2fe" opacity="0.88">suboptimal</text>
+<text x="30" y="2176" fill="#7dd3fc" opacity="0.88">heuristic</text>
+<text x="360" y="280" fill="#7dd3fc" opacity="0.88">O(log n)</text>
+<text x="360" y="306" fill="#e0f2fe" opacity="0.88">DIVIDE&amp;CONQUER</text>
+<text x="360" y="332" fill="#7dd3fc" opacity="0.88">Euclid: gcd(a,b)</text>
+<text x="360" y="358" fill="#e0f2fe" opacity="0.88">a % b == 0</text>
+<text x="360" y="384" fill="#7dd3fc" opacity="0.88">BaseCaseReached</text>
+<text x="720" y="310" fill="#7dd3fc" opacity="0.88">CALL_STACK_FRAME</text>
+<text x="720" y="336" fill="#e0f2fe" opacity="0.88">fact(3) -> fact(2)</text>
+<text x="720" y="362" fill="#7dd3fc" opacity="0.88">stack.push()</text>
+<text x="720" y="388" fill="#e0f2fe" opacity="0.88">stack.pop()</text>
+<text x="720" y="414" fill="#7dd3fc" opacity="0.88">0x7FFF004</text>
+<text x="1080" y="280" fill="#7dd3fc" opacity="0.88">Quicksort: O(n log n)</text>
+<text x="1080" y="306" fill="#e0f2fe" opacity="0.88">Partition(arr, low, high)</text>
+<text x="1080" y="332" fill="#7dd3fc" opacity="0.88">i = low - 1</text>
+<text x="1080" y="358" fill="#e0f2fe" opacity="0.88">swap(arr[i], arr[j])</text>
+<text x="380" y="880" fill="#7dd3fc" opacity="0.88">HASH_COLLISION</text>
+<text x="380" y="906" fill="#e0f2fe" opacity="0.88">sha256_digest</text>
+<text x="380" y="932" fill="#7dd3fc" opacity="0.88">bucket_overflow</text>
+<text x="380" y="958" fill="#e0f2fe" opacity="0.88">rehash_table(2N)</text>
+<text x="380" y="984" fill="#7dd3fc" opacity="0.88">crypto_map</text>
+<text x="740" y="920" fill="#7dd3fc" opacity="0.88">GRAPH_BFS_SHORTEST</text>
+<text x="740" y="946" fill="#e0f2fe" opacity="0.88">queue.append(seller)</text>
+<text x="740" y="972" fill="#7dd3fc" opacity="0.88">mango_dealer_found</text>
+<text x="740" y="998" fill="#e0f2fe" opacity="0.88">depth = level + 1</text>
+<text x="1100" y="890" fill="#7dd3fc" opacity="0.88">DIJKSTRA_ALGO</text>
+<text x="1100" y="916" fill="#e0f2fe" opacity="0.88">lowest_cost_node</text>
+<text x="1100" y="942" fill="#7dd3fc" opacity="0.88">update_cost(neighbor)</text>
+<text x="1100" y="968" fill="#e0f2fe" opacity="0.88">processed.add(node)</text>
+<text x="400" y="1480" fill="#7dd3fc" opacity="0.88">GREEDY_SET_COVER</text>
+<text x="400" y="1506" fill="#e0f2fe" opacity="0.88">best_station = max()</text>
+<text x="400" y="1532" fill="#7dd3fc" opacity="0.88">states_covered.update</text>
+<text x="400" y="1558" fill="#e0f2fe" opacity="0.88">NP_HARD_APPROX</text>
+<text x="760" y="1510" fill="#7dd3fc" opacity="0.88">DYNAMIC_PROGRAMMING</text>
+<text x="760" y="1536" fill="#e0f2fe" opacity="0.88">grid[i][j]=max()</text>
+<text x="760" y="1562" fill="#7dd3fc" opacity="0.88">knapsack_01</text>
+<text x="760" y="1588" fill="#e0f2fe" opacity="0.88">memoization_cache</text>
+<text x="760" y="1614" fill="#7dd3fc" opacity="0.88">optimal_sub</text>
+<text x="1120" y="1490" fill="#7dd3fc" opacity="0.88">GRAPH_MST_KRUSKAL</text>
+<text x="1120" y="1516" fill="#e0f2fe" opacity="0.88">disjoint_set_union</text>
+<text x="1120" y="1542" fill="#7dd3fc" opacity="0.88">priority_queue</text>
+<text x="1120" y="1568" fill="#e0f2fe" opacity="0.88">edge_weight_min</text>
+<text x="1120" y="1594" fill="#7dd3fc" opacity="0.88">cycle_check</text>
+<text x="1340" y="120" fill="#7dd3fc" opacity="0.88">01010101</text>
+<text x="1340" y="146" fill="#e0f2fe" opacity="0.88">01000011</text>
+<text x="1340" y="172" fill="#7dd3fc" opacity="0.88">01010100</text>
+<text x="1340" y="198" fill="#e0f2fe" opacity="0.88">01010011</text>
+<text x="1340" y="224" fill="#7dd3fc" opacity="0.88">0x00401</text>
+<text x="1340" y="250" fill="#e0f2fe" opacity="0.88">01101001</text>
+<text x="1340" y="276" fill="#7dd3fc" opacity="0.88">01101110</text>
+<text x="1340" y="302" fill="#e0f2fe" opacity="0.88">01110011</text>
+<text x="1345" y="440" fill="#7dd3fc" opacity="0.88">LinkedNode</text>
+<text x="1345" y="466" fill="#e0f2fe" opacity="0.88">val: 42</text>
+<text x="1345" y="492" fill="#7dd3fc" opacity="0.88">next: 0x8F</text>
+<text x="1345" y="518" fill="#e0f2fe" opacity="0.88">insert: O(1)</text>
+<text x="1345" y="544" fill="#7dd3fc" opacity="0.88">search: O(n)</text>
+<text x="1345" y="570" fill="#e0f2fe" opacity="0.88">01110011</text>
+<text x="1340" y="760" fill="#7dd3fc" opacity="0.88">QuickSort</text>
+<text x="1340" y="786" fill="#e0f2fe" opacity="0.88">best: n log n</text>
+<text x="1340" y="812" fill="#7dd3fc" opacity="0.88">worst: n^2</text>
+<text x="1340" y="838" fill="#e0f2fe" opacity="0.88">random_pivot</text>
+<text x="1340" y="864" fill="#7dd3fc" opacity="0.88">0xBAADF00D</text>
+<text x="1340" y="890" fill="#e0f2fe" opacity="0.88">01010101</text>
+<text x="1345" y="1080" fill="#7dd3fc" opacity="0.88">HashTable</text>
+<text x="1345" y="1106" fill="#e0f2fe" opacity="0.88">load < 0.7</text>
+<text x="1345" y="1132" fill="#7dd3fc" opacity="0.88">resizing</text>
+<text x="1345" y="1158" fill="#e0f2fe" opacity="0.88">hash_func</text>
+<text x="1345" y="1184" fill="#7dd3fc" opacity="0.88">ascii_sum</text>
+<text x="1345" y="1210" fill="#e0f2fe" opacity="0.88">01101100</text>
+<text x="1340" y="1400" fill="#7dd3fc" opacity="0.88">BreadthFirst</text>
+<text x="1340" y="1426" fill="#e0f2fe" opacity="0.88">Queue_FIFO</text>
+<text x="1340" y="1452" fill="#7dd3fc" opacity="0.88">network_hops</text>
+<text x="1340" y="1478" fill="#e0f2fe" opacity="0.88">path_length</text>
+<text x="1340" y="1504" fill="#7dd3fc" opacity="0.88">visited_set</text>
+<text x="1340" y="1530" fill="#e0f2fe" opacity="0.88">01100001</text>
+<text x="1345" y="1720" fill="#7dd3fc" opacity="0.88">DijkstraDAG</text>
+<text x="1345" y="1746" fill="#e0f2fe" opacity="0.88">no_neg_weights</text>
+<text x="1345" y="1772" fill="#7dd3fc" opacity="0.88">min_priority</text>
+<text x="1345" y="1798" fill="#e0f2fe" opacity="0.88">weight_relax</text>
+<text x="1345" y="1824" fill="#7dd3fc" opacity="0.88">0xFEEDFACE</text>
+<text x="1340" y="2060" fill="#7dd3fc" opacity="0.88">GreedyChoice</text>
+<text x="1340" y="2086" fill="#e0f2fe" opacity="0.88">radio_stations</text>
+<text x="1340" y="2112" fill="#7dd3fc" opacity="0.88">state_coverage</text>
+<text x="1340" y="2138" fill="#e0f2fe" opacity="0.88">O(2^n)_brute</text>
+<text x="1340" y="2164" fill="#7dd3fc" opacity="0.88">O(n^2)_greedy</text>
+</g>
+<!-- Algorithmic Watermark Schematics -->
+
+      <g font-family="system-ui, -apple-system, sans-serif" font-weight="900" fill="#bae6fd" opacity="0.48">
+        <text x="160" y="380" font-size="64">O(1)</text>
+        <text x="500" y="360" font-size="54">O(log n)</text>
+        <text x="860" y="380" font-size="58">O(n)</text>
+        <text x="1140" y="360" font-size="52">O(n log n)</text>
+        <text x="220" y="590" font-size="50">O(n&#178;)</text>
+        <text x="640" y="600" font-size="50">O(2&#8319;)</text>
+        <text x="1040" y="590" font-size="50">O(n!)</text>
+      </g>
+    
+
+      <!-- BST Tree Wireframe Diagram -->
+      <g stroke="#38bdf8" stroke-width="2.5" fill="none" opacity="0.75">
+        <line x1="720" y1="760" x2="620" y2="840" />
+        <line x1="720" y1="760" x2="820" y2="840" />
+        <line x1="620" y1="840" x2="560" y2="920" />
+        <line x1="620" y1="840" x2="680" y2="920" />
+        <line x1="820" y1="840" x2="760" y2="920" />
+        <line x1="820" y1="840" x2="880" y2="920" />
+      </g>
+      <g fill="#1e40af" stroke="#7dd3fc" stroke-width="2.5">
+        <circle cx="720" cy="760" r="18" />
+        <circle cx="620" cy="840" r="16" />
+        <circle cx="820" cy="840" r="16" />
+        <circle cx="560" cy="920" r="14" />
+        <circle cx="680" cy="920" r="14" />
+        <circle cx="760" cy="920" r="14" />
+        <circle cx="880" cy="920" r="14" />
+      </g>
+      <g font-family="monospace" font-size="13" font-weight="bold" fill="#ffffff" text-anchor="middle">
+        <text x="720" y="765">50</text>
+        <text x="620" y="845">25</text>
+        <text x="820" y="845">75</text>
+        <text x="560" y="925">12</text>
+        <text x="680" y="925">37</text>
+        <text x="760" y="925">62</text>
+        <text x="880" y="925">87</text>
+      </g>
+    
+
+      <!-- Dijkstra Graph Circuit -->
+      <g stroke="#60a5fa" stroke-width="2.6" fill="none" stroke-dasharray="6,6" opacity="0.8">
+        <line x1="420" y1="1680" x2="580" y2="1620" />
+        <line x1="420" y1="1680" x2="580" y2="1740" />
+        <line x1="580" y1="1620" x2="780" y2="1620" />
+        <line x1="580" y1="1620" x2="780" y2="1740" />
+        <line x1="580" y1="1740" x2="780" y2="1740" />
+        <line x1="780" y1="1620" x2="940" y2="1680" />
+        <line x1="780" y1="1740" x2="940" y2="1680" />
+      </g>
+      <g fill="#1e3a8a" stroke="#38bdf8" stroke-width="2.5">
+        <circle cx="420" cy="1680" r="20" />
+        <circle cx="580" cy="1620" r="18" />
+        <circle cx="580" cy="1740" r="18" />
+        <circle cx="780" cy="1620" r="18" />
+        <circle cx="780" cy="1740" r="18" />
+        <circle cx="940" cy="1680" r="20" />
+      </g>
+      <g font-family="sans-serif" font-size="14" font-weight="900" fill="#ffffff" text-anchor="middle">
+        <text x="420" y="1686">START</text>
+        <text x="580" y="1626">A</text>
+        <text x="580" y="1746">B</text>
+        <text x="780" y="1626">C</text>
+        <text x="780" y="1746">D</text>
+        <text x="940" y="1686">FIN</text>
+      </g>
+      <g font-family="monospace" font-size="12" font-weight="bold" fill="#fde047">
+        <text x="490" y="1640">w: 6</text>
+        <text x="490" y="1725">w: 2</text>
+        <text x="670" y="1610">w: 1</text>
+        <text x="850" y="1640">w: 3</text>
+        <text x="850" y="1725">w: 5</text>
+      </g>
+    
+
+      <!-- Microprocessor Algorithmic Core Chip -->
+      <g stroke="#38bdf8" stroke-width="2.2" fill="none" opacity="0.85">
+        <rect x="610" y="1120" width="220" height="150" rx="14" fill="rgba(15, 35, 90, 0.55)" stroke="#60a5fa" stroke-width="2.5" />
+        <rect x="630" y="1140" width="180" height="110" rx="10" stroke="#bae6fd" stroke-width="1.5" />
+      </g>
+      <!-- Pins -->
+      <g stroke="#7dd3fc" stroke-width="2.5">
+        <line x1="640" y1="1120" x2="640" y2="1095" />
+        <line x1="675" y1="1120" x2="675" y2="1095" />
+        <line x1="710" y1="1120" x2="710" y2="1095" />
+        <line x1="745" y1="1120" x2="745" y2="1095" />
+        <line x1="780" y1="1120" x2="780" y2="1095" />
+        <line x1="640" y1="1270" x2="640" y2="1295" />
+        <line x1="675" y1="1270" x2="675" y2="1295" />
+        <line x1="710" y1="1270" x2="710" y2="1295" />
+        <line x1="745" y1="1270" x2="745" y2="1295" />
+        <line x1="780" y1="1270" x2="780" y2="1295" />
+      </g>
+      <g font-family="monospace" font-size="14" font-weight="900" fill="#ffffff" text-anchor="middle">
+        <text x="720" y="1190">ALGO_CORE</text>
+        <text x="720" y="1215" font-size="11" fill="#7dd3fc">64-BIT D&amp;C ENGINE</text>
+      </g>
+    
+
+      <g font-family="Georgia, serif" font-style="italic" font-size="32" fill="#bae6fd" opacity="0.55">
+        <text x="200" y="2180">T(n) = 2T(n/2) + O(n)</text>
+        <text x="700" y="2180">&#8721; 1/i &#8776; ln(n) + &#947;</text>
+        <text x="1080" y="2180">dist[u] + w(u,v) &lt; dist[v]</text>
+      </g>
+    
+</svg>
