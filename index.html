@@ -95,7 +95,7 @@
       font-size: 16px;
       line-height: 1.68;
       color: var(--text-main);
-      background-color: #060e22;
+      background-color: var(--bg-primary);
       scroll-behavior: smooth;
       scroll-padding-top: calc(var(--header-h) + 24px);
       -webkit-font-smoothing: antialiased;
@@ -149,13 +149,12 @@
       height: 100vh;
       z-index: -1;
       pointer-events: none;
-      background-color: #060e22;
+      background-color: var(--bg-primary);
       background-image: url('./bg-algorithms-matrix.svg');
       background-repeat: no-repeat;
       background-position: center center;
       background-size: cover;
-      opacity: 0.88;
-      filter: brightness(1.25) contrast(1.1);
+      filter: brightness(1.15) blur(2px);
     }
 
     .ambient-matrix {
@@ -1758,10 +1757,6 @@
       --text-muted:         #475569;
       --text-dim:           #64748b;
       --text-subtle:        #94a3b8;
-    }
-
-    [data-theme="light"] html {
-      background-color: #e2e8f0;
     }
 
     [data-theme="light"] .ambient-bg {
