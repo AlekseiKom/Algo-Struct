@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Algorithms &amp; Structures — Интерактивный учебник-справочник</title>
   <meta name="description" content="Интерактивная справочник-шпаргалка по алгоритмам и структурам данных. Дизайн-система Deep Ambient Sapphire: строгий тёмный монолитный глассморфизм.">
+  <!-- Favicon (SVG) — бинарное дерево в стиле Deep Ambient Sapphire -->
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg">
   <style>
     /* ══════════════════════════════════════════════════════════
        ДИЗАЙН-СИСТЕМА: DEEP AMBIENT SAPPHIRE (Network-Project & Bicycle-World)
@@ -1885,8 +1887,16 @@
     [data-theme="light"] .s-bar { color: #fff; text-shadow: 0 1px 2px rgba(15, 23, 42, 0.3); }
     /* Базовая линия сцены сортировки — чуть читаемее на светлом */
     [data-theme="light"] .sort-stage { border-bottom-color: rgba(37, 99, 235, 0.2); }
-    /* Кнопка «наверх» — насыщенный синий с белым иконом (база: градиент в navy + тёмный --text-white) */
-    [data-theme="light"] .scroll-top { background: linear-gradient(145deg, #3b82f6, #2563eb); color: #fff; }
+    /* Кнопка «наверх» — светлое матовое стекло (ice-glass): полупрозрачный бело-голубой градиент, матовый blur без глянцевого блика, тёмно-синий икон */
+    [data-theme="light"] .scroll-top {
+      background: linear-gradient(150deg, rgba(255, 255, 255, 0.78), rgba(236, 244, 255, 0.5));
+      color: #1d4ed8;
+      backdrop-filter: blur(16px) saturate(150%);
+      -webkit-backdrop-filter: blur(16px) saturate(150%);
+    }
+
+    /* Hover в светлой теме — мягкая синяя тень вместо «ночного» свечения */
+    [data-theme="light"] .scroll-top:hover { box-shadow: 0 14px 38px rgba(37, 99, 235, 0.2), var(--rim-top); }
 
     /* ── Мобильный оверрайд .code-breakdown (в base — тёмный с !important) ── */
     @media (max-width: 768px) {
