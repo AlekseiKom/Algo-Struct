@@ -1802,6 +1802,98 @@
       border: 2px solid rgba(220, 232, 250, 0.7);
     }
 
+    /* ══════════════════════════════════════════════════════════
+       СВЕТЛАЯ ТЕМА — Контентные блоки: светло-голубые тона (7 оттенков)
+    ══════════════════════════════════════════════════════════ */
+
+    /* ── ИНЖЕНЕРНЫЕ ВЕРДИКТЫ: каждый блок своего светло-голубого оттенка ── */
+    [data-theme="light"] .verdict-box { border-color: rgba(37, 99, 235, 0.2); margin-bottom: 12px; }
+
+    /* 1 · Big O / двоичный поиск — небесно-голубой (sky) */
+    [data-theme="light"] #bigo .verdict-box          { background: linear-gradient(160deg, rgba(219, 234, 254, 0.9), rgba(207, 228, 253, 0.75)); }
+    /* 2 · Сортировки — ледяной (icy blue) */
+    [data-theme="light"] #sorting .verdict-box       { background: linear-gradient(160deg, rgba(224, 239, 254, 0.9), rgba(214, 232, 254, 0.75)); }
+    /* 3 · Хеш-таблицы — азово-голубой (azure) */
+    [data-theme="light"] #hash-tables .verdict-box   { background: linear-gradient(160deg, rgba(210, 228, 252, 0.9), rgba(200, 222, 252, 0.75)); }
+    /* 4 · Кучи / деревья — светло-лазурный */
+    [data-theme="light"] #trees-heaps .verdict-box   { background: linear-gradient(160deg, rgba(222, 236, 254, 0.9), rgba(212, 230, 253, 0.75)); }
+    /* 5 · Графовые алгоритмы (BFS/Дейкстра) — голубой с циан-оттенком */
+    [data-theme="light"] #dijkstra .verdict-box      { background: linear-gradient(160deg, rgba(217, 235, 254, 0.9), rgba(208, 231, 253, 0.75)); }
+    /* 6 · DP — перiwinkle-голубой */
+    [data-theme="light"] #greedy-np .verdict-box     { background: linear-gradient(160deg, rgba(226, 238, 254, 0.9), rgba(217, 232, 254, 0.75)); }
+    /* 7 · Стек хранения и поиска — глубокий светло-синий */
+    [data-theme="light"] #distributed-systems .verdict-box { background: linear-gradient(160deg, rgba(213, 229, 253, 0.9), rgba(204, 225, 253, 0.75)); }
+
+    /* Колонки pro/con внутри вердикта — свои оттенки (pro: голубо-зелёный намёк, con: голубовато-фиолетовый) */
+    [data-theme="light"] .verdict-col { border-color: rgba(37, 99, 235, 0.18); }
+    [data-theme="light"] .verdict-col.pro { background: rgba(224, 242, 250, 0.65); }
+    [data-theme="light"] .verdict-col.con { background: rgba(222, 231, 253, 0.65); }
+
+    /* Бейдж bg-b (в dark-теме не стилизован) — синий пилл в светлой */
+    [data-theme="light"] .verdict-box .badge.bg-b { background: rgba(37, 99, 235, 0.14); color: #1d4ed8; border: 1px solid rgba(37, 99, 235, 0.35); }
+
+    /* ── «Точная механика амортизации»: две карточки своего тона ── */
+    [data-theme="light"] #bigo .code-breakdown { background: linear-gradient(160deg, rgba(224, 239, 254, 0.9), rgba(214, 232, 254, 0.7)); }
+    [data-theme="light"] #bigo .code-breakdown + .code-breakdown { background: linear-gradient(160deg, rgba(214, 231, 253, 0.9), rgba(205, 227, 253, 0.7)); }
+
+    /* ── Песочница сортировок: светло-голубой пан + читаемые кнопки ── */
+    [data-theme="light"] .sort-sandbox { background: linear-gradient(160deg, rgba(236, 244, 255, 0.9), rgba(222, 236, 254, 0.8)); border-color: rgba(37, 99, 235, 0.2); }
+    [data-theme="light"] .ctrl-btn { background: rgba(255, 255, 255, 0.85); color: #1e293b; border-color: rgba(37, 99, 235, 0.25); }
+    [data-theme="light"] .ctrl-btn:hover { background: rgba(219, 234, 254, 0.95); color: #0f172a; }
+    /* primary — более тёмный сине-фиолетовый градиент, заметный на светлом фоне; белый текст (фон задаём явно: иначе правило .ctrl-btn выше затирает градиент) */
+    [data-theme="light"] .ctrl-btn.primary { background: linear-gradient(135deg, #1d4ed8 0%, #6d28d9 100%); border-color: transparent; color: #fff; text-shadow: 0 1px 3px rgba(15, 23, 42, 0.4); }
+
+    /* ── Подиумы SVG-графов (BFS / Дейкстра) + контраст узлов и рёбер ── */
+    [data-theme="light"] .graph-svg-wrap { background: linear-gradient(165deg, rgba(230, 241, 254, 0.85), rgba(219, 234, 254, 0.7)); border-color: rgba(37, 99, 235, 0.18); }
+    /* Узлы в состоянии «по умолчанию» (HTML и JS ставят fill="rgba(13,26,...)") — светлые на ярком подиуме.
+       Цвета симуляции (current/visited/target) задаются тем же атрибутом с другими значениями — остаются яркими */
+    [data-theme="light"] #graph-svg circle[fill^="rgba(13,26"],
+    [data-theme="light"] #dijk-svg circle[fill^="rgba(13,26"] { fill: rgba(255, 255, 255, 0.95); stroke: rgba(37, 99, 235, 0.45); }
+    [data-theme="light"] #graph-svg text,
+    [data-theme="light"] #dijk-svg text { fill: #1e3a8a; font-weight: 700; }
+    /* Рёбра BFS (inline-атрибут stroke) и рёбра Дейкстры (.d-edge) — читаемые на светлом */
+    [data-theme="light"] #graph-svg #edges line { stroke: rgba(37, 99, 235, 0.4); }
+    [data-theme="light"] .d-edge { stroke: rgba(37, 99, 235, 0.38); }
+    /* Стрелки маркеров Дейкстры (базовые) */
+    [data-theme="light"] #arrow path { fill: rgba(37, 99, 235, 0.55); }
+
+    /* График асимптотического роста: подписи и сетка на светлом фоне */
+    [data-theme="light"] .chart-svg text[fill="rgba(147,197,253,.45)"] { fill: #475569; }
+    [data-theme="light"] .chart-svg line[stroke-width="1.5"] { stroke: rgba(71, 85, 105, 0.5); }
+    [data-theme="light"] .chart-svg line[stroke-width="1"] { stroke: rgba(148, 163, 184, 0.45); }
+
+    /* ── Highlight-боксы: фон с оттенком акцентной полосы ── */
+    [data-theme="light"] .highlight-box          { background: rgba(231, 241, 254, 0.8); border-color: rgba(37, 99, 235, 0.2); }
+    [data-theme="light"] .highlight-box.red      { background: rgba(254, 236, 236, 0.8); }
+    [data-theme="light"] .highlight-box.green    { background: rgba(228, 246, 238, 0.8); }
+    [data-theme="light"] .highlight-box.amber    { background: rgba(254, 244, 229, 0.8); }
+    [data-theme="light"] .highlight-box.sky      { background: rgba(227, 241, 254, 0.8); }
+    [data-theme="light"] .highlight-box.violet   { background: rgba(240, 234, 253, 0.8); }
+
+    /* ── Чёрные inline-чипы (inline-style) — светлый голубой + тёмный текст ── */
+    [data-theme="light"] code[style*="rgba(0, 0, 0"],
+    [data-theme="light"] code[style*="rgba(0,0,0"] { background: rgba(219, 234, 254, 0.95) !important; color: #1e3a8a !important; }
+
+    /* ── Остальные тёмные элементы виджетов в светлой теме ── */
+    [data-theme="light"] .hash-input { background: rgba(255, 255, 255, 0.9); color: #0f172a; border-color: rgba(37, 99, 235, 0.25); }
+    [data-theme="light"] .hash-input:focus { background: #fff; }
+    /* hash-go — белый текст на сине-фиолетовом градиенте (в light --text-white тёмный) */
+    [data-theme="light"] .hash-go { color: #fff; text-shadow: 0 1px 3px rgba(15, 23, 42, 0.35); }
+    /* Указательные чипы связного списка — светло-голубые с тёмным текстом */
+    [data-theme="light"] .ll-p { background: rgba(219, 234, 254, 0.9); color: #1e3a8a; }
+    /* Цифры на столбцах сортировки — белые (тёмный --text-white читается плохо на сине-янтарных градиентах) */
+    [data-theme="light"] .s-bar { color: #fff; text-shadow: 0 1px 2px rgba(15, 23, 42, 0.3); }
+    /* Базовая линия сцены сортировки — чуть читаемее на светлом */
+    [data-theme="light"] .sort-stage { border-bottom-color: rgba(37, 99, 235, 0.2); }
+    /* Кнопка «наверх» — насыщенный синий с белым иконом (база: градиент в navy + тёмный --text-white) */
+    [data-theme="light"] .scroll-top { background: linear-gradient(145deg, #3b82f6, #2563eb); color: #fff; }
+
+    /* ── Мобильный оверрайд .code-breakdown (в base — тёмный с !important) ── */
+    @media (max-width: 768px) {
+      [data-theme="light"] #bigo .code-breakdown,
+      [data-theme="light"] #bigo .code-breakdown + .code-breakdown { background: rgba(219, 234, 254, 0.9) !important; }
+    }
+
     /* ══════ СТРУКТУРНАЯ ЦЕНТРОВАННАЯ РАЗМЕТКА (NETWORK-PROJECT СТИЛЬ) ══════ */
     .app-layout {
       display: flex;
