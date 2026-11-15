@@ -2461,7 +2461,7 @@
         </a>
         <a href="#trees-heaps" class="s-link" data-sec="trees-heaps">
           <span class="s-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="6" y1="3" x2="6" y2="15"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M18 9a9 9 0 0 1-9 9"/></svg></span>
-          <span class="s-name">Кучи &amp; Деревья</span>
+          <span class="s-name">Кучи, Деревья &amp; DSU</span>
           <span class="s-num">06</span>
         </a>
         <a href="#graphs-bfs" class="s-link" data-sec="graphs-bfs">
@@ -2541,9 +2541,11 @@
   <a href="#recursion-stack" class="m-link">🪆 3. Рекурсия и Стек вызовов</a>
   <a href="#sorting" class="m-link">📊 4. Сортировки и Интерактивная песочница</a>
   <a href="#hash-tables" class="m-link">🛒 5. Хеш-таблицы, Коллизии и Кэш</a>
-  <a href="#graphs-bfs" class="m-link">🌐 6. Графы и Поиск в ширину (BFS)</a>
-  <a href="#dijkstra" class="m-link">🏁 7. Алгоритм Дейкстры (Взвешенный граф)</a>
-  <a href="#greedy-np" class="m-link">🎒 8. Жадные алгоритмы и NP-полнота</a>
+  <a href="#trees-heaps" class="m-link">🌳 6. Кучи, Деревья и Union-Find</a>
+  <a href="#graphs-bfs" class="m-link">🌐 7. Графы и Поиск в ширину (BFS)</a>
+  <a href="#dijkstra" class="m-link">🏁 8. Алгоритм Дейкстры и A*</a>
+  <a href="#greedy-np" class="m-link">🎒 9. DP, Жадные и NP-полнота</a>
+  <a href="#distributed-systems" class="m-link">🛰️ 10. Распределённые системы и ML</a>
 </div>
 <div id="drawerOverlay" class="drawer-overlay"></div>
 
@@ -3274,6 +3276,11 @@
         </div>
       </div>
 
+      <div class="highlight-box red" style="margin-top:18px">
+        <strong>Hash DoS и почему в Python рандомизируют seed:</strong><br>
+        Если злоумышленник заранее подберёт набор ключей, которые все падают в один бакет, хеш-таблица деградирует до $O(n)$. В старых версиях Python это позволяло положить веб-сервер одним POST-запросом с тысячами специально подобранных параметров. Поэтому начиная с Python 3.3 хеш-функция строк рандомизируется при каждом запуске процесса (<code>PYTHONHASHSEED</code> / SipHash). В C++ <code>std::unordered_map</code> тоже использует randomized hashing в современных реализациях.
+      </div>
+
       <h4 style="font-size:1.18rem;font-weight:700;margin:24px 0 12px;color:var(--blue-light)">Где хеш-таблицы правят реальным миром:</h4>
       <ul style="list-style:none;display:flex;flex-direction:column;gap:8px;margin-bottom:24px">
         <li class="b-item"><span class="b-line">1. Серверный кэш</span> <span>Когда браузер запрашивает <code>google.com/about</code>, сервер не строит страницу заново из базы данных. Он заглядывает в хеш-таблицу кэша: URL &rarr; готовый HTML. Время ответа: 1 миллисекунда.</span></li>
@@ -3468,8 +3475,8 @@
   <div class="container">
     <div class="sec-head glass rv">
       <span class="sec-eye">Раздел 6 · Иерархические структуры &amp; Очереди с приоритетом</span>
-      <h2 class="sec-title">Двоичные кучи &amp; Сбалансированные деревья</h2>
-      <p class="sec-desc">Как упаковать разветвленное дерево в плоский массив без единого указателя и почему куча обыгрывает самописные деревья на уровне процессорного кэша.</p>
+      <h2 class="sec-title">Кучи, деревья и Union-Find</h2>
+      <p class="sec-desc">Как упаковать дерево в плоский массив, когда выбирать кучу, а когда красно-чёрное дерево, и почему Union-Find решает задачи связности почти за константу.</p>
     </div>
 
     <!-- Карточка 1: Двоичная куча в плоском массиве -->
@@ -3558,6 +3565,103 @@
           <div class="verdict-col con">
             <strong>✗ Когда НЕ использовать</strong>
             <p>1. Когда требуется поиск произвольного элемента (в куче это $O(n)$, так как порядок между братьями не определен).<br>2. Когда требуется быстрый обход элементов по возрастанию (куча не отсортирована, кроме гарантированного корня).<br>3. Для поиска диапазона значений (Range Queries).</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Карточка: Какое дерево выбирать -->
+    <div class="topic-card glass rv rv-d1" style="margin-top:24px">
+      <h3 class="topic-h" style="color:var(--violet-light)">🌳 Какое дерево выбирать в реальном коде?</h3>
+      <p class="topic-p">В учебниках часто останавливаются на BST. В продакшене выбор структуры диктуется доступом к памяти и типом запросов.</p>
+
+      <div class="grid-2" style="margin-top:16px">
+        <div class="highlight-box sky">
+          <strong>Куча (Binary Heap)</strong><br>
+          Нужен только минимум/максимум + вставка/удаление. Нет поиска произвольного ключа. Идеальна для priority queue, Dijkstra, Top-K. Хранится в плоском массиве → отличная cache locality.
+        </div>
+        <div class="highlight-box amber">
+          <strong>Красно-чёрное / AVL дерево</strong><br>
+          Нужен упорядоченный словарь: поиск, вставка, удаление, «следующий/предыдущий» элемент. Используется в <code>std::map</code>, <code>TreeMap</code>, ядре Linux. Гарантия $O(\log n)$ в худшем случае.
+        </div>
+        <div class="highlight-box green">
+          <strong>B-Tree / B+ Tree</strong><br>
+          Данные живут на диске или SSD. Узлы имеют сотни детей, чтобы минимизировать число случайных чтений с диска. Основа PostgreSQL, MySQL InnoDB, файловых систем.
+        </div>
+        <div class="highlight-box violet">
+          <strong>Плоский массив + bisect / sortedcontainers</strong><br>
+          Если данные почти не меняются или меняются редко — часто быстрее любого дерева. Python-разработчики почти всегда начинают именно с этого.
+        </div>
+      </div>
+
+      <div class="highlight-box red" style="margin-top:18px">
+        <strong>Типичная ошибка:</strong> Писать собственный класс Node с left/right указателями на Python/JavaScript «потому что так в учебнике». На больших данных это превращается в миллионы cache miss’ов. Сначала попробуйте <code>heapq</code>, <code>bisect</code> или готовую библиотеку.
+      </div>
+    </div>
+
+    <!-- Карточка: Union-Find (DSU) -->
+    <div class="topic-card glass rv rv-d1" style="margin-top:24px">
+      <h3 class="topic-h" style="color:var(--blue-electric)">🔗 Система непересекающихся множеств (Union-Find / DSU)</h3>
+      <p class="topic-lead">
+        Одна из самых практичных и недооценённых структур. Позволяет отвечать на два вопроса почти мгновенно: «В одном ли множестве находятся элементы A и B?» и «Объединить множества A и B».
+      </p>
+
+      <div class="grid-2">
+        <div>
+          <h5 style="font-size:1.05rem;font-weight:700;margin-bottom:12px;color:var(--blue-light)">Зачем это нужно</h5>
+          <div class="code-breakdown" style="margin-top:0">
+            <ul class="breakdown-list">
+              <li class="b-item"><span class="b-line">Связность</span><span>Проверить, соединены ли две вершины в неориентированном графе (без полного обхода).</span></li>
+              <li class="b-item"><span class="b-line">Крускал</span><span>Алгоритм построения минимального остовного дерева: добавляем ребро, только если оно не создаёт цикл.</span></li>
+              <li class="b-item"><span class="b-line">Кластеризация</span><span>Объединение близких точек / компонентов в обработке изображений и соцсетях.</span></li>
+              <li class="b-item"><span class="b-line">Онлайн</span><span>Задачи, где связи появляются постепенно и нужно быстро отвечать на запросы «связаны ли?».</span></li>
+            </ul>
+          </div>
+        </div>
+        <div>
+          <h5 style="font-size:1.05rem;font-weight:700;margin-bottom:12px;color:var(--green-light)">Два ключевых трюка</h5>
+          <div class="code-breakdown" style="margin-top:0">
+            <ul class="breakdown-list">
+              <li class="b-item"><span class="b-line">Path Compression</span><span>При поиске корня все узлы на пути сразу «подвешиваются» напрямую к корню. Дерево становится почти плоским.</span></li>
+              <li class="b-item"><span class="b-line">Union by Rank</span><span>Всегда подвешиваем меньшее дерево к корню большего. Высота растёт крайне медленно.</span></li>
+              <li class="b-item"><span class="b-line">Итог</span><span>Практически <strong>$O(\alpha(n))$</strong> на операцию, где $\alpha$ — обратная функция Аккермана (для всех разумных $n$ это ≤ 4).</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="code-wrap rv rv-d2" style="margin-top:22px">
+        <div class="code-bar">
+          <div class="cd cd-r"></div><div class="cd cd-y"></div><div class="cd cd-g"></div>
+          <span class="code-fname">union_find.py</span>
+          <button class="copy-btn" data-target="code-dsu">Копировать</button>
+        </div>
+        <pre class="code" id="code-dsu"></pre>
+      </div>
+
+      <div class="code-breakdown rv rv-d2" style="margin-top:16px">
+        <p class="breakdown-title">🔎 Построчный разбор Union-Find</p>
+        <ul class="breakdown-list">
+          <li class="b-item"><span class="b-line">parent / rank</span><span><code>parent[i] = i</code> в начале — каждый элемент сам себе корень. <code>rank</code> хранит приблизительную высоту дерева.</span></li>
+          <li class="b-item"><span class="b-line">find()</span><span>Идём вверх до корня. Path compression: <code>parent[x] = find(parent[x])</code> — сжимаем путь за один проход.</span></li>
+          <li class="b-item"><span class="b-line">union()</span><span>Находим корни двух элементов. Если они разные — подвешиваем дерево с меньшим rank к дереву с большим.</span></li>
+          <li class="b-item"><span class="b-line">connected()</span><span>Просто сравниваем корни: <code>find(a) == find(b)</code>.</span></li>
+        </ul>
+      </div>
+
+      <div class="verdict-box" style="margin-top:20px">
+        <div class="verdict-head">
+          <span>⚖️ Инженерный вердикт: Union-Find (DSU)</span>
+          <span class="badge bg-g">α(n) ≈ const</span>
+        </div>
+        <div class="verdict-grid">
+          <div class="verdict-col pro">
+            <strong>✓ Когда брать</strong>
+            <p>1. Задачи на динамическую связность графа.<br>2. Алгоритм Крускала (MST).<br>3. Объединение компонентов / кластеров в онлайне.<br>4. Проверка «создаст ли это ребро цикл?».</p>
+          </div>
+          <div class="verdict-col con">
+            <strong>✗ Ограничения</strong>
+            <p>1. Не умеет «разъединять» множества (только объединять).<br>2. Не хранит сами рёбра — только информацию о компонентах.<br>3. Если нужен полный список соседей или кратчайший путь — это уже граф + BFS/Дейкстра.</p>
           </div>
         </div>
       </div>
@@ -4628,6 +4732,45 @@ class MinHeap:
                 break
 </script>
 
+<script type="text/plain" id="src-dsu">
+class UnionFind:
+    def __init__(self, n):
+        self.parent = list(range(n))
+        self.rank = [0] * n
+
+    def find(self, x):
+        # Path compression
+        if self.parent[x] != x:
+            self.parent[x] = self.find(self.parent[x])
+        return self.parent[x]
+
+    def union(self, a, b):
+        ra, rb = self.find(a), self.find(b)
+        if ra == rb:
+            return False  # already connected
+        # Union by rank
+        if self.rank[ra] < self.rank[rb]:
+            self.parent[ra] = rb
+        elif self.rank[ra] > self.rank[rb]:
+            self.parent[rb] = ra
+        else:
+            self.parent[rb] = ra
+            self.rank[ra] += 1
+        return True
+
+    def connected(self, a, b):
+        return self.find(a) == self.find(b)
+
+
+# Example: 5 elements, connect some of them
+uf = UnionFind(5)
+uf.union(0, 1)
+uf.union(1, 2)
+uf.union(3, 4)
+print(uf.connected(0, 2))  # True
+print(uf.connected(0, 3))  # False
+</script>
+
 <script type="text/plain" id="src-edit">
 def min_distance(word1: str, word2: str) -> int:
     m, n = len(word1), len(word2)
@@ -4727,7 +4870,8 @@ function renderAllCodes() {
     'code-greedy':   'src-greedy',
     'code-knapsack': 'src-knapsack',
     'code-heap':     'src-heap',
-    'code-edit':     'src-edit'
+    'code-edit':     'src-edit',
+    'code-dsu':      'src-dsu'
   };
   Object.entries(map).forEach(([preId, srcId]) => {
     const src = document.getElementById(srcId);
@@ -5287,6 +5431,8 @@ const searchIndex = [
   { title: 'Векторный поиск & HNSW граф для LLM / RAG', sec: '05. Хеш & ML', id: 'hash-tables' },
   { title: 'Двоичные кучи (Min-Heap / Max-Heap) & heapq', sec: '06. Кучи & Деревья', id: 'trees-heaps' },
   { title: 'Бинарные деревья поиска (BST) & AVL / Red-Black', sec: '06. Кучи & Деревья', id: 'trees-heaps' },
+  { title: 'Какое дерево выбирать: Heap vs RB-Tree vs B-Tree', sec: '06. Кучи & Деревья', id: 'trees-heaps' },
+  { title: 'Union-Find (DSU): Система непересекающихся множеств', sec: '06. Кучи & Деревья', id: 'trees-heaps' },
   { title: 'Графы и Поиск в ширину (BFS / Breadth-First)', sec: '07. Графы', id: 'graphs-bfs' },
   { title: 'Очередь deque O(1) & Топологическая сортировка', sec: '07. Графы', id: 'graphs-bfs' },
   { title: 'Алгоритм Дейкстры: Кратчайший путь во взвешенном графе', sec: '08. Дейкстра & A*', id: 'dijkstra' },
