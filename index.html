@@ -1367,8 +1367,8 @@
     /* Reveal активен только при включённом JS (html.js): без JS весь контент виден сразу */
     html.js .rv {
       opacity: 0;
-      transform: translateY(22px);
-      transition: opacity 0.6s var(--trans-normal), transform 0.6s var(--trans-normal);
+      transform: translateY(12px);
+      transition: opacity 0.35s cubic-bezier(.22, 1, .36, 1), transform 0.35s cubic-bezier(.22, 1, .36, 1);
     }
 
     html.js .rv.vis {
@@ -1376,8 +1376,8 @@
       transform: translateY(0);
     }
 
-    .rv-d1 { transition-delay: 0.08s; }
-    .rv-d2 { transition-delay: 0.16s; }
+    .rv-d1 { transition-delay: 0.05s; }
+    .rv-d2 { transition-delay: 0.1s; }
 
     /* ══════════════════════════════════════════════════════════
        МОБИЛЬНЫЙ АУДИТ & ЗАЩИТА ОТ ГОРИЗОНТАЛЬНОГО ПЕРЕПОЛНЕНИЯ
@@ -2435,7 +2435,7 @@
       </div>
       <nav class="sidebar-nav">
         <a href="#bigo" class="s-link" data-sec="bigo">
-          <span class="s-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg></span>
+          <span class="s-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20h18"/><path d="M3 4v16"/><path d="M5 17c4 0 7-2 9-6s3-6 6-7"/></svg></span>
           <span class="s-name">Big O &amp; Железо</span>
           <span class="s-num">01</span>
         </a>
@@ -2450,7 +2450,7 @@
           <span class="s-num">03</span>
         </a>
         <a href="#sorting" class="s-link" data-sec="sorting">
-          <span class="s-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span>
+          <span class="s-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="20" x2="6" y2="14"/><line x1="12" y1="20" x2="12" y2="9"/><line x1="18" y1="20" x2="18" y2="4"/></svg></span>
           <span class="s-name">Сортировки &amp; Trade-offs</span>
           <span class="s-num">04</span>
         </a>
@@ -2460,7 +2460,7 @@
           <span class="s-num">05</span>
         </a>
         <a href="#trees-heaps" class="s-link" data-sec="trees-heaps">
-          <span class="s-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="6" y1="3" x2="6" y2="15"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M18 9a9 9 0 0 1-9 9"/></svg></span>
+          <span class="s-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="2.5"/><circle cx="6" cy="18" r="2.5"/><circle cx="18" cy="18" r="2.5"/><path d="M10.7 7.2L7.3 15.8"/><path d="M13.3 7.2l3.4 8.6"/></svg></span>
           <span class="s-name">Кучи, Деревья &amp; DSU</span>
           <span class="s-num">06</span>
         </a>
@@ -5323,13 +5323,17 @@ async function runDijkstraSimulation() {
 document.getElementById('btnRunDijk').addEventListener('click', runDijkstraSimulation);
 document.getElementById('btnResetDijk').addEventListener('click', resetDijkstra);
 
-/* ══════ SCROLL REVEAL ══════ */
-/* threshold: 0 — контент появляется в момент входа во вьюпорт (при 0.08 высокая карточка
-   "дожидалась" 8% видимости → выглядело как запаздывающая подгрузка); после reveal элемент
-   больше не наблюдается */
+/* ══════ SCROLL RESTORATION & REVEAL ══════ */
+if ('scrollRestoration' in history) {
+  history.scrollRestoration = 'manual';
+}
+if (!location.hash) {
+  window.scrollTo(0, 0);
+}
+
 const revealObs = new IntersectionObserver((entries) => {
   entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('vis'); revealObs.unobserve(e.target); } });
-}, { threshold: 0, rootMargin: '0px 0px 12% 0px' }); /* анимация стартует до входа блока во вьюпорт — без рывков при скролле */
+}, { threshold: 0, rootMargin: '0px 0px -30px 0px' });
 document.querySelectorAll('.rv').forEach(el => revealObs.observe(el));
 
 /* ══════ BAR OBSERVER ══════ */
