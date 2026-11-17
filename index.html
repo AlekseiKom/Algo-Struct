@@ -2056,7 +2056,7 @@
       flex: 1;
       min-width: 0;
       max-width: 1100px;
-      padding: 20px 0 40px; /* без боковых отступов — карточки и hero в одной колонке */
+      padding: 20px 0 20px; /* нижний отступ совпадает с отступом панели: последний блок и сайдбар заканчиваются вместе */
     }
 
     @media (max-width: 1200px) {
@@ -4649,7 +4649,7 @@ print(min_distance("kitten", "sitting"))  # Output: 3 (k->s, e->i, +g)</pre>
      ХРАНИЛИЩЕ PYTHON ИСХОДНИКОВ
 ══════════════════════════════════════════════════════════ -->
 
-<script type="text/plain" id="src-fact">
+<template id="src-fact">
 def factorial(x):
     # 1. Базовый случай (Base case)
     if x <= 1:
@@ -4661,9 +4661,9 @@ def factorial(x):
 
 print("3! =", factorial(3))  # -> 6
 print("5! =", factorial(5))  # -> 120
-</script>
+</template>
 
-<script type="text/plain" id="src-sel">
+<template id="src-sel">
 def find_smallest(arr):
     smallest = arr[0]
     smallest_index = 0
@@ -4687,9 +4687,9 @@ def selection_sort(arr):
 tracks = [540, 920, 120, 430, 810]
 print("Отсортированный топ:", selection_sort(tracks))
 # -> [120, 430, 540, 810, 920]
-</script>
+</template>
 
-<script type="text/plain" id="src-qsort">
+<template id="src-qsort">
 def quicksort(arr):
     # Базовый случай: массив из 0 или 1 элемента уже упорядочен
     if len(arr) <= 1:
@@ -4710,9 +4710,9 @@ def quicksort(arr):
 numbers = [33, 15, 10, 5, 2, 88, 42, 10, 7]
 print(quicksort(numbers))
 # -> [2, 5, 7, 10, 10, 15, 33, 42, 88]
-</script>
+</template>
 
-<script type="text/plain" id="src-cache">
+<template id="src-cache">
 # Пример реализации веб-кэша страниц на базе словаря (Hash Table)
 cache = {}
 
@@ -4733,9 +4733,9 @@ def get_web_page(url):
 get_web_page("google.com/about")
 # Второй запрос: O(1) мгновенно из кэша!
 get_web_page("google.com/about")
-</script>
+</template>
 
-<script type="text/plain" id="src-bfs">
+<template id="src-bfs">
 from collections import deque
 
 
@@ -4772,9 +4772,9 @@ network = {
     "Клэр":  ["Дима"],
 }
 search_mango_seller(network, "Ты")
-</script>
+</template>
 
-<script type="text/plain" id="src-dijk">
+<template id="src-dijk">
 # Реализация взвешенного графа
 graph = {
     "start": {"a": 6, "b": 2},
@@ -4824,9 +4824,9 @@ while node is not None:
     node = find_lowest_cost_node(costs)
 
 print(f"Минимальная стоимость пути до финиша: {costs['fin']}")  # -> 6
-</script>
+</template>
 
-<script type="text/plain" id="src-greedy">
+<template id="src-greedy">
 # Множество штатов, которые нужно покрыть
 states_needed = set(["mt", "wa", "or", "id", "nv", "ut", "ca", "az"])
 
@@ -4858,9 +4858,9 @@ while states_needed:
 
 print("Жадно выбранные радиостанции:", final_stations)
 # -> {'kone', 'ktwo', 'kthree', 'kfive'}
-</script>
+</template>
 
-<script type="text/plain" id="src-knapsack">
+<template id="src-knapsack">
 def knapsack_dp(weights, values, capacity):
     n = len(weights)
     dp = [0] * (capacity + 1)   # dp[w] = max value with capacity w
@@ -4878,9 +4878,9 @@ weights  = [2, 3, 4, 5]
 values   = [3, 4, 5, 6]
 capacity = 8
 print(knapsack_dp(weights, values, capacity))  # -> 10
-</script>
+</template>
 
-<script type="text/plain" id="src-heap">
+<template id="src-heap">
 class MinHeap:
     def __init__(self):
         self.heap = []
@@ -4921,9 +4921,9 @@ class MinHeap:
                 idx = smallest
             else:
                 break
-</script>
+</template>
 
-<script type="text/plain" id="src-dsu">
+<template id="src-dsu">
 class UnionFind:
     def __init__(self, n):
         self.parent = list(range(n))
@@ -4960,9 +4960,9 @@ uf.union(1, 2)
 uf.union(3, 4)
 print(uf.connected(0, 2))  # True
 print(uf.connected(0, 3))  # False
-</script>
+</template>
 
-<script type="text/plain" id="src-edit">
+<template id="src-edit">
 def min_distance(word1: str, word2: str) -> int:
     m, n = len(word1), len(word2)
     # dp[i][j] = min edits to convert word1[0..i) to word2[0..j)
@@ -4988,9 +4988,9 @@ def min_distance(word1: str, word2: str) -> int:
 
 # Test
 print(min_distance("kitten", "sitting"))  # Output: 3
-</script>
+</template>
 
-<script type="text/plain" id="src-bsearch">
+<template id="src-bsearch">
 def binary_search(arr: list[int], target: int) -> int:
     left, right = 0, len(arr) - 1
     while left <= right:
@@ -5019,9 +5019,9 @@ def min_eating_speed(piles: list[int], h: int) -> int:
         else:
             left = mid + 1
     return ans
-</script>
+</template>
 
-<script type="text/plain" id="src-twoptr">
+<template id="src-twoptr">
 # Two Pointers: пара с заданной суммой в отсортированном массиве
 def two_sum_sorted(nums: list[int], target: int) -> tuple[int, int] | None:
     left, right = 0, len(nums) - 1
@@ -5045,9 +5045,9 @@ def max_subarray_len(nums: list[int], limit: int) -> int:
             left += 1
         best = max(best, right - left + 1)
     return best
-</script>
+</template>
 
-<script type="text/plain" id="src-monostack">
+<template id="src-monostack">
 # Монотонный убывающий стек: сколько дней ждать более тёплой погоды
 def daily_temperatures(temps: list[int]) -> list[int]:
     ans = [0] * len(temps)
@@ -5058,9 +5058,9 @@ def daily_temperatures(temps: list[int]) -> list[int]:
             ans[prev_i] = i - prev_i
         stack.append(i)
     return ans
-</script>
+</template>
 
-<script type="text/plain" id="src-dfs">
+<template id="src-dfs">
 # Топологическая сортировка (DFS + проверка циклов в DAG)
 def topo_sort(n: int, edges: list[tuple[int, int]]) -> list[int]:
     graph = [[] for _ in range(n)]
@@ -5085,7 +5085,7 @@ def topo_sort(n: int, edges: list[tuple[int, int]]) -> list[int]:
         if state[i] == 0 and not dfs(i):
             return []  # Цикл обнаружен
     return order[::-1]  # Разворачиваем post-order
-</script>
+</template>
 
 <!-- ══════════════════════════════════════════════════════════
      SCRIPTS & INTERACTION ENGINE
@@ -5168,7 +5168,7 @@ function renderAllCodes() {
   Object.entries(map).forEach(([preId, srcId]) => {
     const src = document.getElementById(srcId);
     const pre = document.getElementById(preId);
-    if (src && pre) pre.innerHTML = pyHL(src.textContent.trim());
+    if (src && pre) pre.innerHTML = pyHL(src.content.textContent.trim());
   });
 }
 
